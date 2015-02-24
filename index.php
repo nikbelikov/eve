@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>projeval</title>
+    <title>eve</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,13 +22,13 @@
     <script src="js/app/directives/drv-task-page.js"></script>
 </head>
 
-<body ng-app="projeval">
+<body ng-app="eve">
 
 <header>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">projeval</a>
+                <a class="navbar-brand" href="/">eve</a>
             </div>
         </div>
     </nav>
@@ -38,7 +38,7 @@
 
 <footer>
     <div class="container text-center">
-        <p>2015 © projeval</p>
+        <p>2015 © eve</p>
     </div>
 </footer>
 

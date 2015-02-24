@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('projeval');
+    var app = angular.module('eve');
 
     app.controller('PageCtrl', function ($scope, pageService, $modal, $http, $timeout) {
 

@@ -1,3 +1,3 @@
-angular.module('projeval', [
+angular.module('eve', [
     'ui.bootstrap'
 ]);

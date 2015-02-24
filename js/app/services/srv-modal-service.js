@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('projeval');
+    var app = angular.module('eve');
 
     app.service('modalService', function () {
         this.addNewPage = function (pages, name) {
