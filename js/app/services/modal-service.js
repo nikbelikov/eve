@@ -19,7 +19,7 @@
         };
 
         this.addNewTask = function (page, task) {
-            if (task.taskName && task.taskDesc) {
+            if (task && task.taskName && task.taskDesc) {
                 task.taskTime = 0;
                 page.pageTasks.push(task);
             }
