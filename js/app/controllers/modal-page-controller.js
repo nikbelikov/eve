@@ -8,6 +8,11 @@
             $scope.pageName = modalData.page.pageName;
         }
 
+        // заголовок окна в зависимости от того,
+        // редактируем ли мы название страницы или
+        // добавляем новую
+        $scope.modalTitle = modalData.page ? 'Редактировать название' : 'Добавить страницу';
+
         $scope.ok = function () {
             // если редактируем название страницы
             if (modalData.page) {
