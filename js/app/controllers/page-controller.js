@@ -116,6 +116,20 @@
             });
         };
 
+        $scope.pageMove = function (pages, index, direction) {
+            var oldElem = pages[index];
+            var newIndex;
+
+            if (direction === 'up') {
+                newIndex = index-1;
+            } else if (direction === 'down') {
+                newIndex = index+1;
+            }
+
+            pages.splice(index, 1);
+            pages.splice(newIndex, 0, oldElem);
+        };
+
     }]);
 
 })();

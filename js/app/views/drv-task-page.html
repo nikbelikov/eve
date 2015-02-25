@@ -1,7 +1,13 @@
 <section ng-controller="PageCtrl">
 
     <div class="container" ng-repeat="page in pages">
-        <h3 class="text-center">{{page.pageName}} <button class="btn btn-default btn-xs" ng-click="removePage(pages, $index)"><span class="glyphicon glyphicon-minus"></span></button> <button class="btn btn-default btn-xs" ng-click="editPageTitle(page)"><span class="glyphicon glyphicon-edit"></span></button></h3>
+        <h3 class="text-center">
+            <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="pageMove(pages, $index, 'up')"><span class="glyphicon glyphicon-triangle-top"></span></button>
+            <button class="btn btn-default btn-xs"ng-if="$index+1 !== pages.length" ng-click="pageMove(pages, $index, 'down')"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
+            {{page.pageName}}
+            <button class="btn btn-default btn-xs" ng-click="removePage(pages, $index)"><span class="glyphicon glyphicon-minus"></span></button>
+            <button class="btn btn-default btn-xs" ng-click="editPageTitle(page)"><span class="glyphicon glyphicon-edit"></span></button>
+        </h3>
         <table class="table table-bordered">
             <tr>
                 <th width="8%"></th>
