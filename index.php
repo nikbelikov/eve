@@ -17,7 +17,7 @@
     <script src="js/app/services/page-service.js"></script>
     <script src="js/app/services/modal-service.js"></script>
     <script src="js/app/controllers/page-controller.js"></script>
-    <script src="js/app/controllers/modal-controller.js"></script>
+    <script src="js/app/controllers/modal-page-controller.js"></script>
     <script src="js/app/controllers/modal-task-controller.js"></script>
     <script src="js/app/directives/drv-task-page.js"></script>
 </head>
