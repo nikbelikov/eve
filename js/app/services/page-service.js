@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('eve');
 
-    app.service('pageService', function ($http, $q) {
+    app.service('pageService', ['$http', '$q', function ($http, $q) {
 
         // склонение числительных
         // пример использования:
@@ -30,6 +30,7 @@
             return total;
         };
 
+        // забрать данные в localstorage
         this.getLastDataFromDb = function() {
             var deferred = $q.defer();
             var result = {
@@ -39,6 +40,7 @@
             return deferred.promise;
         };
 
+        // забрать данные из файла
         this.getLastDataFromSrv = function() {
             return $http.get('/data.json');
         };
@@ -51,5 +53,6 @@
             }
         };
 
-    });
+    }]);
+
 })();

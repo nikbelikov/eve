@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('eve');
 
-    app.controller('ModalPageCtrl', function ($scope, $modalInstance, modalService, modalData) {
+    app.controller('ModalPageCtrl', ['$scope', '$modalInstance', 'modalService', 'modalData', function ($scope, $modalInstance, modalService, modalData) {
 
         // если редактируем название страницы
         if (modalData.page) {
@@ -21,5 +21,7 @@
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-    });
+
+    }]);
+
 })();

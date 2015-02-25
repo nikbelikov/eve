@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('eve');
 
-    app.controller('PageCtrl', function ($scope, pageService, $modal, $http, $timeout) {
+    app.controller('PageCtrl', ['$scope', 'pageService', '$modal', '$http', '$timeout', function ($scope, pageService, $modal, $http, $timeout) {
 
         pageService.getLastData().then(function (result) {
             $scope.pages = result.data;
@@ -115,5 +115,7 @@
                 $scope.pages = result.data;
             });
         };
-    });
+
+    }]);
+
 })();

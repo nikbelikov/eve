@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('eve');
 
-    app.controller('ModalTaskCtrl', function ($scope, $modalInstance, modalService, modalData) {
+    app.controller('ModalTaskCtrl', ['$scope', '$modalInstance', 'modalService', 'modalData', function ($scope, $modalInstance, modalService, modalData) {
 
         // если редактируем задачу
         if (modalData.task) {
@@ -25,5 +25,7 @@
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-    });
+
+    }]);
+
 })();
