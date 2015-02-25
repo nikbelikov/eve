@@ -1,7 +1,7 @@
 (function () {
     var app = angular.module('eve');
 
-    app.service('pageService', function () {
+    app.service('pageService', function ($http, $q) {
 
         // склонение числительных
         // пример использования:
@@ -30,13 +30,24 @@
             return total;
         };
 
+        this.getLastDataFromDb = function() {
+            var deferred = $q.defer();
+            var result = {
+                data: JSON.parse(localStorage.getItem('appData'))
+            };
+            deferred.resolve(result);
+            return deferred.promise;
+        };
+
+        this.getLastDataFromSrv = function() {
+            return $http.get('/data.json');
+        };
+
         this.getLastData = function () {
             if (localStorage.getItem('appData') !== '' && localStorage.getItem('appData') !== null) {
-                return JSON.parse(localStorage.getItem('appData'));
+                return this.getLastDataFromDb();
             } else {
-                $http.get('/data.json').success(function (jsonData) {
-                    return jsonData;
-                });
+                return this.getLastDataFromSrv();
             }
         };
 

@@ -3,7 +3,9 @@
 
     app.controller('PageCtrl', function ($scope, pageService, $modal, $http, $timeout) {
 
-        $scope.pages = pageService.getLastData();
+        pageService.getLastData().then(function (result) {
+            $scope.pages = result.data;
+        });
 
         $scope.pagesTotalTime = 0;
         $scope.risksTime = 0;
@@ -109,7 +111,9 @@
         };
 
         $scope.cancelEdits = function () {
-            $scope.pages = pageService.getLastData();
+            pageService.getLastData().then(function (result) {
+                $scope.pages = result.data;
+            });
         };
     });
 })();

@@ -14,11 +14,11 @@
     <script src="js/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 
     <script src="js/app/app.js"></script>
-    <script src="js/app/services/srv-page-service.js"></script>
-    <script src="js/app/services/srv-modal-service.js"></script>
-    <script src="js/app/controllers/ctrl-page-controller.js"></script>
-    <script src="js/app/controllers/ctrl-modal-controller.js"></script>
-    <script src="js/app/controllers/ctrl-modal-task-controller.js"></script>
+    <script src="js/app/services/page-service.js"></script>
+    <script src="js/app/services/modal-service.js"></script>
+    <script src="js/app/controllers/page-controller.js"></script>
+    <script src="js/app/controllers/modal-controller.js"></script>
+    <script src="js/app/controllers/modal-task-controller.js"></script>
     <script src="js/app/directives/drv-task-page.js"></script>
 </head>
 
