@@ -116,8 +116,8 @@
             });
         };
 
-        $scope.pageMove = function (pages, index, direction) {
-            var oldElem = pages[index];
+        $scope.elementMove = function (elements, index, direction) {
+            var oldElem = elements[index];
             var newIndex;
 
             if (direction === 'up') {
@@ -126,8 +126,8 @@
                 newIndex = index+1;
             }
 
-            pages.splice(index, 1);
-            pages.splice(newIndex, 0, oldElem);
+            elements.splice(index, 1);
+            elements.splice(newIndex, 0, oldElem);
         };
 
     }]);

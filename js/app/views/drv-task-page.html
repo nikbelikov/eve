@@ -2,8 +2,8 @@
 
     <div class="container" ng-repeat="page in pages">
         <h3 class="text-center">
-            <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="pageMove(pages, $index, 'up')"><span class="glyphicon glyphicon-triangle-top"></span></button>
-            <button class="btn btn-default btn-xs"ng-if="$index+1 !== pages.length" ng-click="pageMove(pages, $index, 'down')"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
+            <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="elementMove(pages, $index, 'up')"><span class="glyphicon glyphicon-triangle-top"></span></button>
+            <button class="btn btn-default btn-xs" ng-if="$index+1 !== pages.length" ng-click="elementMove(pages, $index, 'down')"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
             {{page.pageName}}
             <button class="btn btn-default btn-xs" ng-click="removePage(pages, $index)"><span class="glyphicon glyphicon-minus"></span></button>
             <button class="btn btn-default btn-xs" ng-click="editPageTitle(page)"><span class="glyphicon glyphicon-edit"></span></button>
@@ -15,19 +15,23 @@
                 <th width="25%">Задача</th>
                 <th>Описание</th>
                 <th width="12%">Время (ч.)</th>
+                <th width="8%"></th>
             </tr>
             <tr ng-repeat="task in page.pageTasks">
                 <td><button class="btn btn-default btn-xs" ng-click="removeTask(page, $index)"><span class="glyphicon glyphicon-minus"></span></button> <button class="btn btn-default btn-xs" ng-click="editTask(task)"><span class="glyphicon glyphicon-edit"></span></button></td>
                 <td>{{$index + 1}}</td>
                 <td>{{task.taskName}}</td>
-                <td>{{task.taskDesc}}
-                </td>
+                <td>{{task.taskDesc}}</td>
                 <td><input type="number" min="0" max="999" class="form-control" placeholder="ч." ng-model="task.taskTime" ng-value="task.taskTime"></td>
+                <td>
+                    <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="elementMove(page.pageTasks, $index, 'up')"><span class="glyphicon glyphicon-triangle-top"></span></button>
+                    <button class="btn btn-default btn-xs" ng-if="$index+1 !== page.pageTasks.length" ng-click="elementMove(page.pageTasks, $index, 'down')"><span class="glyphicon glyphicon-triangle-bottom"></span></button></td>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
                 <td><button type="button" class="btn btn-link" ng-click="addTask(page)">Добавить задачу</button></td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>
