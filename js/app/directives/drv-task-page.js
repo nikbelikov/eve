@@ -1,10 +1,9 @@
 (function () {
-    var app = angular.module('eve');
-
-    app.directive('taskPage', function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'js/app/views/drv-task-page.html'
-        }
-    });
+    angular.module('eve')
+        .directive('taskPage', function () {
+            return {
+                restrict: 'E',
+                templateUrl: '/views/drv-task-page.html'
+            }
+        });
 })();
