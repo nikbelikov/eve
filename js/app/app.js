@@ -1,3 +1,4 @@
 angular.module('eve', [
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngRoute'
 ]);

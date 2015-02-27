@@ -10,10 +10,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.3.14/angular-route.min.js"></script>
     <script src="js/ui-bootstrap-custom-0.12.0.min.js"></script>
     <script src="js/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
 
     <script src="js/app/app.js"></script>
+    <script src="js/app/routes.js"></script>
     <script src="js/app/services/page-service.js"></script>
     <script src="js/app/services/modal-service.js"></script>
     <script src="js/app/controllers/page-controller.js"></script>
@@ -28,13 +30,21 @@
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">eve</a>
+                <span class="navbar-brand">Eve (α)</span>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+                <ul class="nav navbar-nav">
+                    <li><a href="#design">Дизайн</a></li>
+                    <li><a href="#html">Верстка</a></li>
+                    <li><a href="#frontend">Фронтенд</a></li>
+                    <li><a href="#backend">Бэкенд</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 </header>
 
-<task-page></task-page>
+<div ng-view></div>
 
 <footer>
     <div class="container text-center">
