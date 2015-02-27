@@ -5,19 +5,19 @@ angular.module('eve')
             .when('/', {redirectTo: '/design'})
             .when('/design', {
                 templateUrl: '/views/design.html',
-                controller: 'PageCtrl'
+                controller: 'MainCtrl'
             })
             .when('/html', {
                 templateUrl: '/views/html.html',
-                controller: 'PageCtrl'
+                controller: 'MainCtrl'
             })
             .when('/frontend', {
                 templateUrl: '/views/frontend.html',
-                controller: 'PageCtrl'
+                controller: 'MainCtrl'
             })
             .when('/backend', {
                 templateUrl: '/views/backend.html',
-                controller: 'PageCtrl'
+                controller: 'MainCtrl'
             })
             .otherwise({redirectTo: '/design'});
 
