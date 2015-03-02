@@ -29,26 +29,59 @@
                 return total;
             };
 
+            this.getTypeData = function (type) {
+
+                var dataUrl = ''; // url для получения\сохранения данных на сервер
+                var localId = ''; // параметр для сохранения в localstorage
+
+                switch (type) {
+                    case "design":
+                        dataUrl = "/json/design.json";
+                        localId = "appDesign";
+                        break;
+                    case "html":
+                        dataUrl = "/json/html.json";
+                        localId = "appHtml";
+                        break;
+                    case "frontend":
+                        dataUrl = "/json/frontend.json";
+                        localId = "appFrontend";
+                        break;
+                    case "backend":
+                        dataUrl = "/json/backend.json";
+                        localId = "appBackend";
+                        break;
+                }
+
+                return {
+                    dataUrl: dataUrl,
+                    localId: localId
+                }
+            };
+
             // забрать данные в localstorage
-            this.getLastDataFromDb = function() {
+            this.getLastDataFromDb = function(pageUrl) {
+                var pageTypeData = this.getTypeData(pageUrl);
                 var deferred = $q.defer();
                 var result = {
-                    data: JSON.parse(localStorage.getItem('appData'))
+                    data: JSON.parse(localStorage.getItem(pageTypeData.localId))
                 };
                 deferred.resolve(result);
                 return deferred.promise;
             };
 
             // забрать данные из файла
-            this.getLastDataFromSrv = function() {
-                return $http.get('/data.json');
+            this.getLastDataFromSrv = function(pageUrl) {
+                var pageTypeData = this.getTypeData(pageUrl);
+                return $http.get(pageTypeData.dataUrl);
             };
 
-            this.getLastData = function () {
-                if (localStorage.getItem('appData') !== '' && localStorage.getItem('appData') !== null) {
-                    return this.getLastDataFromDb();
+            this.getLastData = function (pageUrl) {
+                var pageTypeData = this.getTypeData(pageUrl);
+                if (localStorage.getItem(pageTypeData.localId) !== '' && localStorage.getItem(pageTypeData.localId) !== null) {
+                    return this.getLastDataFromDb(pageUrl);
                 } else {
-                    return this.getLastDataFromSrv();
+                    return this.getLastDataFromSrv(pageUrl);
                 }
             };
 

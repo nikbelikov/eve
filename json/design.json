@@ -1,0 +1,32 @@
+[
+  {
+    "pageName": "Главная страница",
+    "pageTasks": [
+      {
+        "taskName": "Создание файла",
+        "taskDesc": "Размеры, сетка",
+        "taskTime": 2
+      },
+      {
+        "taskName": "Настройка макета",
+        "taskDesc": "Подготовка psd",
+        "taskTime": 2
+      }
+    ]
+  },
+  {
+    "pageName": "Контакты",
+    "pageTasks": [
+      {
+        "taskName": "Яндекс.Карты",
+        "taskDesc": "Карта, кастомные метки",
+        "taskTime": 3
+      },
+      {
+        "taskName": "Форма связи",
+        "taskDesc": "Поля, прикрепить файл",
+        "taskTime": 1
+      }
+    ]
+  }
+]

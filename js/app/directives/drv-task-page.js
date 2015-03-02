@@ -5,14 +5,11 @@
                 restrict: 'E',
                 templateUrl: '/views/drv-task-page.html',
                 scope: {
-                    page: '@page'
-                },
-                link: function (scope) {
-
+                    pageUrl: '@pageUrl'
                 },
                 controller: function ($scope, pageService, $modal, $http, $timeout) {
 
-                    pageService.getLastData().then(function (result) {
+                    pageService.getLastData($scope.pageUrl).then(function (result) {
                         $scope.pages = result.data;
                     });
 
@@ -111,16 +108,21 @@
                         });
                     };
 
+                    $scope.pageTypeData = pageService.getTypeData($scope.pageUrl);
+
                     $scope.saveData = function () {
-                        localStorage.setItem('appData', JSON.stringify($scope.pages));
+                        localStorage.setItem($scope.pageTypeData.localId, JSON.stringify($scope.pages));
+
                         $scope.savedDataLabelShow = true;
+
                         $timeout(function () {
                             $scope.savedDataLabelShow = false;
                         }, 2000);
                     };
 
+
                     $scope.cancelEdits = function () {
-                        pageService.getLastData().then(function (result) {
+                        pageService.getLastData($scope.pageUrl).then(function (result) {
                             $scope.pages = result.data;
                         });
                     };
