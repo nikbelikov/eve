@@ -7,7 +7,11 @@
                 scope: {
                     pageUrl: '@pageUrl'
                 },
-                controller: function ($scope, pageService, $modal, $http, $timeout) {
+                controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout) {
+
+                    $rootScope.$on('$routeChangeSuccess', function () {
+                        $scope.saveData();
+                    });
 
                     pageService.getLastData($scope.pageUrl).then(function (result) {
                         $scope.pages = result.data;
@@ -111,7 +115,7 @@
                     $scope.pageTypeData = pageService.getTypeData($scope.pageUrl);
 
                     $scope.saveData = function () {
-                        localStorage.setItem($scope.pageTypeData.localId, JSON.stringify($scope.pages));
+                        pageService.setLastData($scope.pageTypeData.localId, JSON.stringify($scope.pages));
 
                         $scope.savedDataLabelShow = true;
 

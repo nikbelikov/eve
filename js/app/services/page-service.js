@@ -85,6 +85,10 @@
                 }
             };
 
+            this.setLastData = function (location, data) {
+                localStorage.setItem(location, data);
+            }
+
         }]);
 
 })();

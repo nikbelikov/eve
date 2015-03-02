@@ -26,6 +26,8 @@
 
 <body ng-app="eve">
 
+<div ng-controller="MainCtrl">
+
 <header>
     <nav class="navbar navbar-inverse" role="navigation">
         <div class="container">
@@ -34,17 +36,15 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
                 <ul class="nav navbar-nav">
-                    <li><a href="#design">Дизайн</a></li>
-                    <li><a href="#html">Верстка</a></li>
-                    <li><a href="#frontend">Фронтенд</a></li>
-                    <li><a href="#backend">Бэкенд</a></li>
+                    <li ng-class="{active: currentMenuItem === 'design'}" ng-click="currentMenuItem = 'design'"><a href="#design">Дизайн</a></li>
+                    <li ng-class="{active: currentMenuItem === 'html'}" ng-click="currentMenuItem = 'html'"><a href="#html">Верстка</a></li>
+                    <li ng-class="{active: currentMenuItem === 'frontend'}" ng-click="currentMenuItem = 'frontend'"><a href="#frontend">Фронтенд</a></li>
+                    <li ng-class="{active: currentMenuItem === 'backend'}" ng-click="currentMenuItem = 'backend'"><a href="#backend">Бэкенд</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-
-<div ng-controller="MainCtrl">
 
     <div ng-view></div>
 
