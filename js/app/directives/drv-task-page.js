@@ -124,7 +124,6 @@
                         }, 2000);
                     };
 
-
                     $scope.cancelEdits = function () {
                         pageService.getLastData($scope.pageUrl).then(function (result) {
                             $scope.pages = result.data;

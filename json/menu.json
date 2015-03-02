@@ -1,0 +1,18 @@
+[
+  {
+    "pageName": "Дизайн",
+    "pageUrl": "design"
+  },
+  {
+    "pageName": "Верстка",
+    "pageUrl": "html"
+  },
+  {
+    "pageName": "Фронтенд",
+    "pageUrl": "frontend"
+  },
+  {
+    "pageName": "Бэкенд",
+    "pageUrl": "backend"
+  }
+]

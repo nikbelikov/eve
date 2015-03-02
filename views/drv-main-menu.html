@@ -1,0 +1,5 @@
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
+    <ul class="nav navbar-nav">
+        <li ng-repeat="item in menuItems" ng-class="{active: isCurrentMenu(item)}" ng-click="setCurrentMenu(item)"><a ng-href="#{{item.pageUrl}}">{{item.pageName}}</a></li>
+    </ul>
+</div>
