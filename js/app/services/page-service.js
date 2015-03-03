@@ -30,32 +30,9 @@
             };
 
             this.getTypeData = function (type) {
-
-                var dataUrl = ''; // url для получения\сохранения данных на сервер
-                var localId = ''; // параметр для сохранения в localstorage
-
-                switch (type) {
-                    case "design":
-                        dataUrl = "/json/design.json";
-                        localId = "appDesign";
-                        break;
-                    case "html":
-                        dataUrl = "/json/html.json";
-                        localId = "appHtml";
-                        break;
-                    case "frontend":
-                        dataUrl = "/json/frontend.json";
-                        localId = "appFrontend";
-                        break;
-                    case "backend":
-                        dataUrl = "/json/backend.json";
-                        localId = "appBackend";
-                        break;
-                }
-
                 return {
-                    dataUrl: dataUrl,
-                    localId: localId
+                    dataUrl: '/json/' + type + '.json',
+                    localId: 'app'+ type
                 }
             };
 
