@@ -143,6 +143,17 @@
                         elements.splice(index, 1);
                         elements.splice(newIndex, 0, oldElem);
                     };
+                    
+                    $scope.goToPage = function () {
+                        var ind = this.$index;
+                        var el = document.querySelectorAll('h3')[ind];
+                        var bodyRect = document.body.getBoundingClientRect();
+                        var elRect = el.getBoundingClientRect();
+                        var elPosition = elRect.top - bodyRect.top;
+
+                        // скролл до нужного блока
+                        window.scrollTo(0, elPosition);
+                    };
 
                 }
             }
