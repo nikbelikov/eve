@@ -3,7 +3,7 @@
         .directive('taskPage', function () {
             return {
                 restrict: 'E',
-                templateUrl: '/views/drv-task-page.html',
+                templateUrl: globalPath + '/views/drv-task-page.html',
                 scope: {
                     pageUrl: '@pageUrl'
                 },
@@ -52,7 +52,7 @@
 
                     $scope.addPage = function () {
                         $modal.open({
-                            templateUrl: '/views/add-page.html',
+                            templateUrl: globalPath + '/views/add-page.html',
                             controller: 'ModalPageCtrl',
                             resolve: {
                                 modalData: function () {
@@ -68,7 +68,7 @@
 
                     $scope.editPageTitle = function (page) {
                         $modal.open({
-                            templateUrl: '/views/add-page.html',
+                            templateUrl: globalPath + '/views/add-page.html',
                             controller: 'ModalPageCtrl',
                             resolve: {
                                 modalData: function () {
@@ -82,7 +82,7 @@
 
                     $scope.addTask = function (page) {
                         $modal.open({
-                            templateUrl: '/views/add-task.html',
+                            templateUrl: globalPath + '/views/add-task.html',
                             controller: 'ModalTaskCtrl',
                             resolve: {
                                 modalData: function () {
@@ -100,7 +100,7 @@
 
                     $scope.editTask = function (task) {
                         $modal.open({
-                            templateUrl: '/views/add-task.html',
+                            templateUrl: globalPath + '/views/add-task.html',
                             controller: 'ModalTaskCtrl',
                             resolve: {
                                 modalData: function () {
@@ -143,7 +143,7 @@
                         elements.splice(index, 1);
                         elements.splice(newIndex, 0, oldElem);
                     };
-                    
+
                     $scope.goToPage = function () {
                         var ind = this.$index;
                         var el = document.querySelectorAll('h3')[ind];

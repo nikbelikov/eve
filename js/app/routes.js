@@ -4,19 +4,19 @@ angular.module('eve')
         $routeProvider
             .when('/', {redirectTo: '/design'})
             .when('/design', {
-                templateUrl: '/views/design.html',
+                templateUrl: globalPath + '/views/design.html',
                 controller: 'MainCtrl'
             })
             .when('/html', {
-                templateUrl: '/views/html.html',
+                templateUrl: globalPath + '/views/html.html',
                 controller: 'MainCtrl'
             })
             .when('/frontend', {
-                templateUrl: '/views/frontend.html',
+                templateUrl: globalPath + '/views/frontend.html',
                 controller: 'MainCtrl'
             })
             .when('/backend', {
-                templateUrl: '/views/backend.html',
+                templateUrl: globalPath + '/views/backend.html',
                 controller: 'MainCtrl'
             })
             .otherwise({redirectTo: '/design'});

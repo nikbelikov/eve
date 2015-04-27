@@ -31,7 +31,7 @@
 
             this.getTypeData = function (type) {
                 return {
-                    dataUrl: '/json/' + type + '.json',
+                    dataUrl: globalPath+ '/json/' + type + '.json',
                     localId: 'app'+ type
                 }
             };

@@ -3,10 +3,10 @@
         .directive('mainMenu', ['$location', function ($location) {
             return {
                 restrict: 'E',
-                templateUrl: '/views/drv-main-menu.html',
+                templateUrl: globalPath + '/views/drv-main-menu.html',
                 controller: function ($scope, $http) {
 
-                    $http.get('/json/menu.json').success(function (data) {
+                    $http.get(globalPath + '/json/menu.json').success(function (data) {
                         $scope.menuItems = data;
                     });
 
