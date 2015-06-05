@@ -17,15 +17,18 @@
     <!--<script>var globalPath = "/angular"; // prod</script>-->
     <script>var globalPath = "/app"; // dev</script>
 
-    <script src="js/app/app.js"></script>
-    <script src="js/app/routes.js"></script>
-    <script src="js/app/services/page-service.js"></script>
-    <script src="js/app/services/modal-service.js"></script>
-    <script src="js/app/controllers/main-controller.js"></script>
-    <script src="js/app/controllers/modal-page-controller.js"></script>
-    <script src="js/app/controllers/modal-task-controller.js"></script>
-    <script src="js/app/directives/drv-task-page.js"></script>
-    <script src="js/app/directives/drv-main-menu.js"></script>
+    <!-- inject:js -->
+    <script src="/app/js/app/app.js"></script>
+    <script src="/app/js/app/routes.js"></script>
+    <script src="/app/js/app/controllers/main-controller.js"></script>
+    <script src="/app/js/app/controllers/modal-page-controller.js"></script>
+    <script src="/app/js/app/controllers/modal-task-controller.js"></script>
+    <script src="/app/js/app/directives/drv-main-menu.js"></script>
+    <script src="/app/js/app/directives/drv-task-page.js"></script>
+    <script src="/app/js/app/services/modal-service.js"></script>
+    <script src="/app/js/app/services/page-service.js"></script>
+    <!-- endinject -->
+
 </head>
 
 <body ng-app="eve">

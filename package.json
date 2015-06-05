@@ -1,0 +1,20 @@
+{
+  "name": "Eve",
+  "version": "0.0.1",
+  "description": "Прототип простого angular-приложения для оценки проектов",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikbelikov/eve.git"
+  },
+  "author": "Nikolay Belikov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nikbelikov/eve/issues"
+  },
+  "homepage": "https://github.com/nikbelikov/eve",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-inject": "^1.2.0",
+    "gulp-load-plugins": "^0.10.0"
+  }
+}
