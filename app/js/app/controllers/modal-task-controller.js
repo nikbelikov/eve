@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     angular.module('eve')
         .controller('ModalTaskCtrl', ['$scope', '$modalInstance', 'modalService', 'modalData', function ($scope, $modalInstance, modalService, modalData) {

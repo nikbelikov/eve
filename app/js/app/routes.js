@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('eve')
     .config(['$routeProvider', function ($routeProvider) {
 

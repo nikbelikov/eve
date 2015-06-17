@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     angular.module('eve')
         .service('pageService', ['$http', '$q', function ($http, $q) {

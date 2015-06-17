@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     angular.module('eve')
         .controller('ModalPageCtrl', ['$scope', '$modalInstance', 'modalService', 'modalData', function ($scope, $modalInstance, modalService, modalData) {

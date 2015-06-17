@@ -73,6 +73,21 @@
         <br>
     </div>
 
+    <div class="container" ng-repeat="page in pages">
+        <p>
+            <span>{{page.pageName | uppercase}}</span> <br/>
+            <span ng-repeat="task in page.pageTasks">{{task.taskName}} {{task.taskTime}}<br/></span>
+            <span>Суммарное время: {{pageTotalTime(page)}}</span>
+        </p>
+        <p>----------------------------------------</p>
+    </div>
+    <div class="container">
+        <p>
+            <span>Итоговое время без рисков: {{pagesTotalTime(pages)}}</span> <br/>
+            <span>Итоговое время с рисками (10%): {{commonTotalTime()}}</span>
+        </p>
+    </div>
+
     <p class="text-center">
         <button type="button" class="btn btn-link" ng-click="cancelEdits()">Отмена</button>
         <button type="button" class="btn btn-success" ng-click="saveData()">Сохранить</button>
