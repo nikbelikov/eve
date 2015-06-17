@@ -11,13 +11,19 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.3.14/angular-route.min.js"></script>
-    <script src="js/ui-bootstrap-custom-0.12.0.min.js"></script>
-    <script src="js/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+
+    <!-- build:js(.) js/libs.js -->
+    <!-- libs:js -->
+    <script src="/app/js/libs/ui-bootstrap-custom-0.12.0.min.js"></script>
+    <script src="/app/js/libs/ui-bootstrap-custom-tpls-0.12.0.min.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
 
     <!--<script>var globalPath = "/angular"; // prod</script>-->
     <script>var globalPath = "/app"; // dev</script>
 
-    <!-- inject:js -->
+    <!-- build:js(.) js/app.js -->
+    <!-- app:js -->
     <script src="/app/js/app/app.js"></script>
     <script src="/app/js/app/routes.js"></script>
     <script src="/app/js/app/controllers/main-controller.js"></script>
@@ -28,6 +34,7 @@
     <script src="/app/js/app/services/modal-service.js"></script>
     <script src="/app/js/app/services/page-service.js"></script>
     <!-- endinject -->
+    <!-- endbuild -->
 
 </head>
 
