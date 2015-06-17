@@ -1,100 +1,200 @@
 <section>
 
-    <div class="container" ng-repeat="page in pages">
-        <h3 class="text-center">
-            <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="elementMove(pages, $index, 'up')"><span class="glyphicon glyphicon-triangle-top"></span></button>
-            <button class="btn btn-default btn-xs" ng-if="$index+1 !== pages.length" ng-click="elementMove(pages, $index, 'down')"><span class="glyphicon glyphicon-triangle-bottom"></span></button>
-            {{page.pageName}}
-            <button class="btn btn-default btn-xs" ng-click="removePage(pages, $index)"><span class="glyphicon glyphicon-minus"></span></button>
-            <button class="btn btn-default btn-xs" ng-click="editPageTitle(page)"><span class="glyphicon glyphicon-edit"></span></button>
-        </h3>
-        <table class="table table-bordered">
-            <tr>
-                <th width="8%"></th>
-                <th width="5%">#</th>
-                <th width="25%">Задача</th>
-                <th>Описание</th>
-                <th width="12%">Время (ч.)</th>
-                <th width="8%"></th>
-            </tr>
-            <tr ng-repeat="task in page.pageTasks">
-                <td><button class="btn btn-default btn-xs" ng-click="removeTask(page, $index)"><span class="glyphicon glyphicon-minus"></span></button> <button class="btn btn-default btn-xs" ng-click="editTask(task)"><span class="glyphicon glyphicon-edit"></span></button></td>
-                <td>{{$index + 1}}</td>
-                <td>{{task.taskName}}</td>
-                <td>{{task.taskDesc}}</td>
-                <td><input type="number" min="0" max="999" class="form-control" placeholder="ч." ng-model="task.taskTime" ng-value="task.taskTime"></td>
-                <td>
-                    <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="elementMove(page.pageTasks, $index, 'up')"><span class="glyphicon glyphicon-triangle-top"></span></button>
-                    <button class="btn btn-default btn-xs" ng-if="$index+1 !== page.pageTasks.length" ng-click="elementMove(page.pageTasks, $index, 'down')"><span class="glyphicon glyphicon-triangle-bottom"></span></button></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td><button type="button" class="btn btn-link" ng-click="addTask(page)">Добавить задачу</button></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-
-        <p class="pull-right"><strong>Итого ({{page.pageName | lowercase}}): {{pageTotalTime(page)}}</strong></p>
-    </div>
-
-    <hr>
-
-    <div class="text-center">
-        <button type="button" class="btn btn-default btn-small" data-toggle="tooltip" ng-click="addPage()"><span class="glyphicon glyphicon-plus"></span> Добавить страницу
+    <p class="text-center">
+        <button type="button" class="btn btn-default" ng-click="layout = 'table'"
+                ng-class="{'btn-lg': layout == 'table'}">
+            <span class="glyphicon glyphicon-list-alt"></span>
         </button>
-    </div>
-
-    <hr>
-
-    <div class="container">
-        <h3 class="text-center"><span class="glyphicon glyphicon-time"></span> Итоговое время</h3>
-        <table class="table table-bordered">
-            <tr>
-                <th width="5%">#</th>
-                <th>Страница</th>
-                <th width="30%">Время (ч.)</th>
-            </tr>
-            <tr ng-repeat="page in pages">
-                <td>{{$index + 1}}</td>
-                <td><a href="javascript:void(0)" ng-click="goToPage()">{{page.pageName}}</a></td>
-                <td>{{pageTotalTime(page)}}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><small>Риски (10% от общего времени)</small></td>
-                <td><small>{{riskTime(pages)}}</small></td>
-            </tr>
-        </table>
-        <p class="pull-right"><strong>Итоговое время без рисков: {{pagesTotalTime(pages)}}</strong></p><br><br>
-        <p class="pull-right"><strong>Итоговое время с рисками: {{commonTotalTime()}}</strong></p><br><br>
-        <br>
-    </div>
-
-    <div class="container" ng-repeat="page in pages">
-        <p>
-            <span>{{page.pageName | uppercase}}</span> <br/>
-            <span ng-repeat="task in page.pageTasks">{{task.taskName}} {{task.taskTime}}<br/></span>
-            <span>Суммарное время: {{pageTotalTime(page)}}</span>
-        </p>
-        <p>----------------------------------------</p>
-    </div>
-    <div class="container">
-        <p>
-            <span>Итоговое время без рисков: {{pagesTotalTime(pages)}}</span> <br/>
-            <span>Итоговое время с рисками (10%): {{commonTotalTime()}}</span>
-        </p>
-    </div>
-
-    <p class="text-center">
-        <button type="button" class="btn btn-link" ng-click="cancelEdits()">Отмена</button>
-        <button type="button" class="btn btn-success" ng-click="saveData()">Сохранить</button>
+        <button type="button" class="btn btn-default" ng-click="layout = 'clear'"
+                ng-class="{'btn-lg': layout == 'clear'}">
+            <span class="glyphicon glyphicon-th-large"></span>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="layout = 'text'"
+                ng-class="{'btn-lg': layout == 'text'}">
+            <span class="glyphicon glyphicon-align-left"></span>
+        </button>
     </p>
 
-    <p class="text-center">
-        <span class="label label-success" ng-show="savedDataLabelShow">Сохранено</span>
-    </p>
+    <div class="layout-table" ng-show="layout=='table'">
+
+        <div class="container" ng-repeat="page in pages">
+            <h3 class="text-center">
+                <button class="btn btn-default btn-xs" ng-if="$index !== 0" ng-click="elementMove(pages, $index, 'up')">
+                    <span class="glyphicon glyphicon-triangle-top"></span></button>
+                <button class="btn btn-default btn-xs" ng-if="$index+1 !== pages.length"
+                        ng-click="elementMove(pages, $index, 'down')"><span
+                        class="glyphicon glyphicon-triangle-bottom"></span></button>
+                {{page.pageName}}
+                <button class="btn btn-default btn-xs" ng-click="removePage(pages, $index)"><span
+                        class="glyphicon glyphicon-minus"></span></button>
+                <button class="btn btn-default btn-xs" ng-click="editPageTitle(page)"><span
+                        class="glyphicon glyphicon-edit"></span></button>
+            </h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="8%"></th>
+                    <th width="5%">#</th>
+                    <th width="25%">Задача</th>
+                    <th>Описание</th>
+                    <th width="12%">Время (ч.)</th>
+                    <th width="8%"></th>
+                </tr>
+                <tr ng-repeat="task in page.pageTasks">
+                    <td>
+                        <button class="btn btn-default btn-xs" ng-click="removeTask(page, $index)"><span
+                                class="glyphicon glyphicon-minus"></span></button>
+                        <button class="btn btn-default btn-xs" ng-click="editTask(task)"><span
+                                class="glyphicon glyphicon-edit"></span></button>
+                    </td>
+                    <td>{{$index + 1}}</td>
+                    <td>{{task.taskName}}</td>
+                    <td>{{task.taskDesc}}</td>
+                    <td><input type="number" min="0" max="999" class="form-control" placeholder="ч."
+                               ng-model="task.taskTime" ng-value="task.taskTime"></td>
+                    <td>
+                        <button class="btn btn-default btn-xs" ng-if="$index !== 0"
+                                ng-click="elementMove(page.pageTasks, $index, 'up')"><span
+                                class="glyphicon glyphicon-triangle-top"></span></button>
+                        <button class="btn btn-default btn-xs" ng-if="$index+1 !== page.pageTasks.length"
+                                ng-click="elementMove(page.pageTasks, $index, 'down')"><span
+                                class="glyphicon glyphicon-triangle-bottom"></span></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-link" ng-click="addTask(page)">Добавить задачу</button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <p class="pull-right"><strong>Итого ({{page.pageName | lowercase}}): {{pageTotalTime(page)}}</strong></p>
+        </div>
+
+        <hr>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-default btn-small" data-toggle="tooltip" ng-click="addPage()"><span
+                    class="glyphicon glyphicon-plus"></span> Добавить страницу
+            </button>
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <h3 class="text-center"><span class="glyphicon glyphicon-time"></span> Итоговое время</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="5%">#</th>
+                    <th>Страница</th>
+                    <th width="30%">Время (ч.)</th>
+                </tr>
+                <tr ng-repeat="page in pages">
+                    <td>{{$index + 1}}</td>
+                    <td><a href="javascript:void(0)" ng-click="goToPage()">{{page.pageName}}</a></td>
+                    <td>{{pageTotalTime(page)}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <small>Риски (10% от общего времени)</small>
+                    </td>
+                    <td>
+                        <small>{{riskTime(pages)}}</small>
+                    </td>
+                </tr>
+            </table>
+            <p class="pull-right"><strong>Итоговое время без рисков: {{pagesTotalTime(pages)}}</strong></p><br><br>
+
+            <p class="pull-right"><strong>Итоговое время с рисками: {{commonTotalTime()}}</strong></p><br><br>
+            <br>
+        </div>
+
+        <p class="text-center">
+            <button type="button" class="btn btn-link" ng-click="cancelEdits()">Отмена</button>
+            <button type="button" class="btn btn-success" ng-click="saveData()">Сохранить</button>
+        </p>
+
+        <p class="text-center">
+            <span class="label label-success" ng-show="savedDataLabelShow">Сохранено</span>
+        </p>
+    </div>
+
+    <div class="layout-table" ng-show="layout=='clear'">
+
+        <div class="container" ng-repeat="page in pages">
+            <h3 class="text-center">
+                {{page.pageName}}
+            </h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="5%">#</th>
+                    <th width="25%">Задача</th>
+                    <th>Описание</th>
+                    <th width="12%">Время (ч.)</th>
+                </tr>
+                <tr ng-repeat="task in page.pageTasks">
+                    <td>{{$index + 1}}</td>
+                    <td>{{task.taskName}}</td>
+                    <td>{{task.taskDesc}}</td>
+                    <td>{{task.taskTime}}</td>
+                </tr>
+            </table>
+
+            <p class="pull-right"><strong>Итого ({{page.pageName | lowercase}}): {{pageTotalTime(page)}}</strong></p>
+        </div>
+
+        <hr>
+
+        <div class="container">
+            <h3 class="text-center"><span class="glyphicon glyphicon-time"></span> Итоговое время</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th width="5%">#</th>
+                    <th>Страница</th>
+                    <th width="30%">Время (ч.)</th>
+                </tr>
+                <tr ng-repeat="page in pages">
+                    <td>{{$index + 1}}</td>
+                    <td>{{page.pageName}}</td>
+                    <td>{{pageTotalTime(page)}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <small>Риски (10% от общего времени)</small>
+                    </td>
+                    <td>
+                        <small>{{riskTime(pages)}}</small>
+                    </td>
+                </tr>
+            </table>
+            <p class="pull-right"><strong>Итоговое время без рисков: {{pagesTotalTime(pages)}}</strong></p><br><br>
+
+            <p class="pull-right"><strong>Итоговое время с рисками: {{commonTotalTime()}}</strong></p><br><br>
+            <br>
+        </div>
+    </div>
+
+    <div class="layout-text" ng-show="layout=='text'">
+        <div class="container" ng-repeat="page in pages">
+            <p>
+                <span>{{page.pageName | uppercase}}</span> <br/>
+                <span ng-repeat="task in page.pageTasks">{{task.taskName}} {{task.taskTime}}<br/></span>
+                <span>Суммарное время: {{pageTotalTime(page)}}</span>
+            </p>
+            <p>----------------------------------------</p>
+        </div>
+        <div class="container">
+            <p>
+                <span>Итоговое время без рисков: {{pagesTotalTime(pages)}}</span> <br/>
+                <span>Итоговое время с рисками (10%): {{commonTotalTime()}}</span>
+            </p>
+        </div>
+    </div>
 
 </section>

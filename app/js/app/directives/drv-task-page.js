@@ -11,6 +11,8 @@
                 },
                 controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout) {
 
+                    $scope.layout = 'table';
+
                     $rootScope.$on('$routeChangeSuccess', function () {
                         $scope.saveData();
                     });
