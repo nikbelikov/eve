@@ -20,8 +20,12 @@
             };
 
             this.addNewTask = function (page, task) {
-                if (task && task.taskName && task.taskDesc) {
+                if (task && task.taskName) {
                     task.taskTime = 0;
+                    if (!task.taskDesc) {
+                        task.taskDesc = 'нет описания';
+                    }
+
                     page.pageTasks.push(task);
                 }
             };

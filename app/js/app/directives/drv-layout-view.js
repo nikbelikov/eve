@@ -2,7 +2,7 @@
 
 (function () {
     angular.module('eve')
-        .directive('layoutView', ['$location', function ($location) {
+        .directive('layoutView', function () {
             return {
                 restrict: 'E',
                 templateUrl: globalPath + '/views/drv-layout-view.html',
@@ -14,5 +14,5 @@
 
                 }
             }
-        }]);
+        });
 })();
