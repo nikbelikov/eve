@@ -4,6 +4,17 @@
     angular.module('eve')
         .service('pageService', ['$http', '$q', function ($http, $q) {
 
+            // вид представления по умолчанию ('table', 'clear', 'text')
+            this.layout = 'table';
+
+            this.getLayoutView = function () {
+                return this.layout;
+            };
+
+            this.setLayoutView = function (layout) {
+                this.layout = layout;
+            };
+
             // склонение числительных
             // пример использования:
             // getDeclOfNum(total, ['час', 'часа', 'часов'])

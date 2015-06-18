@@ -19,7 +19,7 @@
     <!-- endinject -->
     <!-- endbuild -->
 
-    <!--<script>var globalPath = "/angular"; // prod</script>-->
+    <!--<script>var globalPath = "/eve"; // prod</script>-->
     <script>var globalPath = "/app"; // dev</script>
 
     <!-- build:js(.) js/app.js -->
@@ -29,6 +29,7 @@
     <script src="/app/js/app/controllers/main-controller.js"></script>
     <script src="/app/js/app/controllers/modal-page-controller.js"></script>
     <script src="/app/js/app/controllers/modal-task-controller.js"></script>
+    <script src="/app/js/app/directives/drv-layout-view.js"></script>
     <script src="/app/js/app/directives/drv-main-menu.js"></script>
     <script src="/app/js/app/directives/drv-task-page.js"></script>
     <script src="/app/js/app/services/modal-service.js"></script>
@@ -48,6 +49,7 @@
             <div class="navbar-header">
                 <span class="navbar-brand">Eve (α)</span>
             </div>
+            <layout-view></layout-view>
             <main-menu></main-menu>
         </div>
     </nav>

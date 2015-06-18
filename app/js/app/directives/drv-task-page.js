@@ -11,7 +11,13 @@
                 },
                 controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout) {
 
-                    $scope.layout = 'table';
+                    // отслеживаем изменение результата выполнения функции getLayoutView()
+                    // когда изменилось, присваиваем для $scope.layout новое значение
+                    $scope.$watch(function () {
+                        return pageService.getLayoutView();
+                    }, function (newLayout, oldLayout) {
+                        $scope.layout = newLayout;
+                    });
 
                     $rootScope.$on('$routeChangeSuccess', function () {
                         $scope.saveData();

@@ -1,20 +1,5 @@
 <section>
 
-    <p class="text-center">
-        <button type="button" class="btn btn-default" ng-click="layout = 'table'"
-                ng-class="{'btn-lg': layout == 'table'}">
-            <span class="glyphicon glyphicon-list-alt"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="layout = 'clear'"
-                ng-class="{'btn-lg': layout == 'clear'}">
-            <span class="glyphicon glyphicon-th-large"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="layout = 'text'"
-                ng-class="{'btn-lg': layout == 'text'}">
-            <span class="glyphicon glyphicon-align-left"></span>
-        </button>
-    </p>
-
     <div class="layout-table" ng-show="layout=='table'">
 
         <div class="container" ng-repeat="page in pages">
