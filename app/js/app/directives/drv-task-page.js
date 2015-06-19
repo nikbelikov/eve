@@ -7,7 +7,8 @@
                 restrict: 'E',
                 templateUrl: globalPath + '/views/drv-task-page.html',
                 scope: {
-                    pageUrl: '@pageUrl'
+                    pageUrl: '@pageUrl',
+                    pageTitle: '@pageTitle'
                 },
                 controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout) {
 
