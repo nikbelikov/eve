@@ -1,8 +1,8 @@
 <section>
 
-    <h1 class="text-center">{{pageTitle}}</h1>
-
     <div class="layout-table" ng-show="layout=='table'">
+
+        <h1 class="text-center">{{pageTitle}}</h1>
 
         <div class="container" ng-repeat="page in pages">
             <h3 class="text-center">
@@ -113,6 +113,8 @@
 
     <div class="layout-table" ng-show="layout=='clear'">
 
+        <h1 class="text-center">{{pageTitle}}</h1>
+
         <div class="container" ng-repeat="page in pages">
             <h3 class="text-center">
                 {{page.pageName}}
@@ -168,6 +170,14 @@
     </div>
 
     <div class="layout-text" ng-show="layout=='text'">
+
+        <div class="container">
+            <p>
+                <span>{{pageTitle | uppercase}}</span> <br/>
+            </p>
+            <p>----------------------------------------</p>
+        </div>
+
         <div class="container" ng-repeat="page in pages">
             <p>
                 <span>{{page.pageName | uppercase}}</span> <br/>
