@@ -5,24 +5,12 @@ angular.module('eve')
 
         $routeProvider
             .when('/', {redirectTo: '/projects'})
-            .when('/design', {
-                templateUrl: globalPath + '/views/design.html',
-                controller: 'MainCtrl'
-            })
-            .when('/html', {
-                templateUrl: globalPath + '/views/html.html',
-                controller: 'MainCtrl'
-            })
-            .when('/frontend', {
-                templateUrl: globalPath + '/views/frontend.html',
-                controller: 'MainCtrl'
-            })
-            .when('/backend', {
-                templateUrl: globalPath + '/views/backend.html',
-                controller: 'MainCtrl'
-            })
             .when('/projects', {
-                templateUrl: globalPath + '/views/projects.html',
+                templateUrl: globalPath + '/views/projects-list.html',
+                controller: 'ProjectsCtrl'
+            })
+            .when('/projects/:id', {
+                templateUrl: globalPath + '/views/project.html',
                 controller: 'MainCtrl'
             })
             .otherwise({redirectTo: '/projects'});

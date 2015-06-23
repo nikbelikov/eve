@@ -10,21 +10,21 @@
                     pageUrl: '@pageUrl',
                     pageTitle: '@pageTitle'
                 },
-                controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout) {
+                controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout, $routeParams) {
 
                     // отслеживаем изменение результата выполнения функции getLayoutView()
                     // когда изменилось, присваиваем для $scope.layout новое значение
                     $scope.$watch(function () {
                         return pageService.getLayoutView();
-                    }, function (newLayout, oldLayout) {
+                    }, function (newLayout) {
                         $scope.layout = newLayout;
                     });
 
-                    $rootScope.$on('$routeChangeSuccess', function () {
-                        $scope.saveData();
-                    });
+                    //$rootScope.$on('$routeChangeSuccess', function () {
+                    //    $scope.saveData();
+                    //});
 
-                    pageService.getLastData($scope.pageUrl).then(function (result) {
+                    pageService.getLastData($routeParams.id).then(function (result) {
                         $scope.pages = result.data;
                     });
 
@@ -126,7 +126,7 @@
                     $scope.pageTypeData = pageService.getTypeData($scope.pageUrl);
 
                     $scope.saveData = function () {
-                        pageService.setLastData($scope.pageTypeData.localId, JSON.stringify($scope.pages));
+                        pageService.setLastData($routeParams.id, JSON.stringify($scope.pages));
 
                         $scope.savedDataLabelShow = true;
 
@@ -136,7 +136,7 @@
                     };
 
                     $scope.cancelEdits = function () {
-                        pageService.getLastData($scope.pageUrl).then(function (result) {
+                        pageService.getLastData($routeParams.id).then(function (result) {
                             $scope.pages = result.data;
                         });
                     };

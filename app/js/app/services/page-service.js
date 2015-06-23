@@ -66,14 +66,16 @@
                 return $http.get(pageTypeData.dataUrl);
             };
 
-            this.getLastData = function (pageUrl) {
-                var pageTypeData = this.getTypeData(pageUrl);
-
-                if (localStorage.getItem(pageTypeData.localId) !== '' && localStorage.getItem(pageTypeData.localId) !== null) {
-                    return this.getLastDataFromDb(pageUrl);
-                } else {
-                    return this.getLastDataFromSrv(pageUrl);
+            this.getLastData = function (id) {
+                var deferred = $q.defer();
+                var result = {
+                    data: JSON.parse(localStorage.getItem(id))
+                };
+                if (!result.data) {
+                    result = {"data": []};
                 }
+                deferred.resolve(result);
+                return deferred.promise;
             };
 
             this.setLastData = function (location, data) {
