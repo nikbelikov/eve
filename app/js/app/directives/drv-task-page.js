@@ -6,11 +6,19 @@
             return {
                 restrict: 'E',
                 templateUrl: globalPath + '/views/drv-task-page.html',
-                scope: {
-                    pageUrl: '@pageUrl',
-                    pageTitle: '@pageTitle'
-                },
-                controller: function ($rootScope, $scope, pageService, $modal, $http, $timeout, $routeParams) {
+                controller: function ($scope, pageService, $modal, $http, $timeout, $routeParams) {
+
+                    var projects = JSON.parse(localStorage.getItem('project-list'));
+                    var pageTitle = "";
+                    var routeId = $routeParams.id;
+
+                    projects.map(function (project) {
+                        if (project.id === routeId) {
+                            pageTitle = project.name;
+                        }
+                    });
+
+                    $scope.pageTitle = pageTitle;
 
                     // отслеживаем изменение результата выполнения функции getLayoutView()
                     // когда изменилось, присваиваем для $scope.layout новое значение
@@ -19,10 +27,6 @@
                     }, function (newLayout) {
                         $scope.layout = newLayout;
                     });
-
-                    //$rootScope.$on('$routeChangeSuccess', function () {
-                    //    $scope.saveData();
-                    //});
 
                     pageService.getLastData($routeParams.id).then(function (result) {
                         $scope.pages = result.data;
@@ -122,8 +126,6 @@
                             }
                         });
                     };
-
-                    $scope.pageTypeData = pageService.getTypeData($scope.pageUrl);
 
                     $scope.saveData = function () {
                         pageService.setLastData($routeParams.id, JSON.stringify($scope.pages));

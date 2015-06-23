@@ -3,7 +3,7 @@
 (function () {
     angular.module('eve')
         .controller('ProjectsCtrl', ['$scope', function ($scope) {
-            $scope.projects = [
+            var projects = [
                 {
                     "id": "ecber32v34vb3v43vv4b",
                     "name": "Проект 1",
@@ -15,5 +15,8 @@
                     "time": 25
                 }
             ];
+
+            localStorage.setItem('project-list', JSON.stringify(projects));
+            $scope.projects = projects;
         }]);
 })();
