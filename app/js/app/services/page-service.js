@@ -68,6 +68,7 @@
 
             this.getLastData = function (pageUrl) {
                 var pageTypeData = this.getTypeData(pageUrl);
+
                 if (localStorage.getItem(pageTypeData.localId) !== '' && localStorage.getItem(pageTypeData.localId) !== null) {
                     return this.getLastDataFromDb(pageUrl);
                 } else {

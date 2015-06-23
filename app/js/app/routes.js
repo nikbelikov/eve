@@ -4,7 +4,7 @@ angular.module('eve')
     .config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider
-            .when('/', {redirectTo: '/design'})
+            .when('/', {redirectTo: '/projects'})
             .when('/design', {
                 templateUrl: globalPath + '/views/design.html',
                 controller: 'MainCtrl'
@@ -21,6 +21,10 @@ angular.module('eve')
                 templateUrl: globalPath + '/views/backend.html',
                 controller: 'MainCtrl'
             })
-            .otherwise({redirectTo: '/design'});
+            .when('/projects', {
+                templateUrl: globalPath + '/views/projects.html',
+                controller: 'MainCtrl'
+            })
+            .otherwise({redirectTo: '/projects'});
 
     }]);
