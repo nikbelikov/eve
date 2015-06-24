@@ -42,30 +42,6 @@
                 return total;
             };
 
-            this.getTypeData = function (type) {
-                return {
-                    dataUrl: globalPath+ '/json/' + type + '.json',
-                    localId: 'app'+ type
-                }
-            };
-
-            // забрать данные в localstorage
-            this.getLastDataFromDb = function(pageUrl) {
-                var pageTypeData = this.getTypeData(pageUrl);
-                var deferred = $q.defer();
-                var result = {
-                    data: JSON.parse(localStorage.getItem(pageTypeData.localId))
-                };
-                deferred.resolve(result);
-                return deferred.promise;
-            };
-
-            // забрать данные из файла
-            this.getLastDataFromSrv = function(pageUrl) {
-                var pageTypeData = this.getTypeData(pageUrl);
-                return $http.get(pageTypeData.dataUrl);
-            };
-
             this.getLastData = function (id) {
                 var deferred = $q.defer();
                 var result = {
