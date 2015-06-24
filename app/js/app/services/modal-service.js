@@ -28,8 +28,7 @@
                 if (name) {
                     var newProject = {
                         id: this.generateId(chars, length, noRepeat),
-                        name: name,
-                        time: 0
+                        name: name
                     };
                     projects.push(newProject);
                     localStorage.setItem('project-list', JSON.stringify(projects));

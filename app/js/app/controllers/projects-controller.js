@@ -18,5 +18,11 @@
                     }
                 });
             }
+
+            $scope.removeProject = function (projects, id, index) {
+                projects.splice(index, 1);
+                localStorage.setItem('project-list', JSON.stringify(projects));
+                localStorage.removeItem(id);
+            }
         }]);
 })();

@@ -6,15 +6,13 @@
             <tr>
                 <th width="5%">#</th>
                 <th>Название</th>
-                <th width="15%">Время (ч.)</th>
                 <th width="8%"></th>
             </tr>
             <tr ng-repeat="project in projects track by $index">
                 <td>{{$index+1}}</td>
                 <td><a ng-href="#/projects/{{project.id}}">{{project.name}}</a></td>
-                <td>{{project.time}}</td>
                 <td>
-                    <button class="btn btn-default btn-xs">
+                    <button class="btn btn-default btn-xs" ng-click="removeProject(projects, project.id, $index)">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
                     <button class="btn btn-default btn-xs">
