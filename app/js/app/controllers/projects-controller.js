@@ -19,6 +19,20 @@
                 });
             }
 
+            $scope.editProject = function (project) {
+                $modal.open({
+                    templateUrl: globalPath + '/views/add-page.html',
+                    controller: 'ModalProjectsCtrl',
+                    resolve: {
+                        modalData: function () {
+                            return {
+                                project: project
+                            };
+                        }
+                    }
+                })
+            }
+
             $scope.removeProject = function (projects, id, index) {
                 projects.splice(index, 1);
                 localStorage.setItem('project-list', JSON.stringify(projects));

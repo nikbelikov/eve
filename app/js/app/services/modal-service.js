@@ -35,6 +35,23 @@
                 }
             };
 
+            this.editProjectTitle = function (project, newName) {
+                if (newName !== '') {
+                    var oldName = project.name;
+                    var projects = JSON.parse(localStorage.getItem('project-list'));
+
+                    project.name = newName;
+
+                    projects.map(function (project) {
+                        if (project.name === oldName) {
+                            project.name = newName;
+                        }
+                    });
+
+                    localStorage.setItem('project-list', JSON.stringify(projects));
+                }
+            };
+
             this.addNewPage = function (pages, name) {
                 if (name) {
                     var newPage = {
