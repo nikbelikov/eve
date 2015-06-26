@@ -8,6 +8,8 @@
                 templateUrl: globalPath + '/views/drv-task-page.html',
                 controller: function ($scope, pageService, $modal, $http, $timeout, $routeParams) {
 
+                    $scope.layout = 'table';
+
                     var projects = JSON.parse(localStorage.getItem('project-list'));
                     var pageTitle = "";
                     var routeId = $routeParams.id;

@@ -3,6 +3,7 @@
 (function () {
     angular.module('eve')
         .controller('ProjectsCtrl', ['$scope', '$modal', 'projectsService', function ($scope, $modal, projectsService) {
+                       
             projectsService.getProjects().then(function (result) {
                 $scope.projects = result;
             });
