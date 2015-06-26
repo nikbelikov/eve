@@ -44,7 +44,7 @@
                     <td>{{$index + 1}}</td>
                     <td>{{task.taskName}}</td>
                     <td>{{task.taskDesc}}</td>
-                    <td><input type="number" min="0" max="999" class="form-control" placeholder="ч."
+                    <td><input type="number" min="0" max="999" placeholder="ч."
                                ng-model="task.taskTime" ng-value="task.taskTime"></td>
                     <td>
                         <button class="btn btn-default btn-xs" ng-if="$index !== 0"
@@ -96,7 +96,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <small>Риски (10% от общего времени)</small>
+                        <small>Риски ({{risks}}% от общего времени)</small>
                     </td>
                     <td>
                         <small>{{riskTime(pages)}}</small>
@@ -105,7 +105,7 @@
             </table>
             <p class="pull-right"><strong>Итоговое время без рисков: {{pagesTotalTime(pages)}}</strong></p><br><br>
 
-            <p class="pull-right"><strong>Итоговое время с рисками (10%): {{commonTotalTime()}}</strong></p><br><br>
+            <p class="pull-right"><strong>Итоговое время с рисками ({{risks}}%): {{commonTotalTime()}}</strong></p><br><br>
             <br>
         </div>
 
@@ -163,7 +163,7 @@
                 <tr>
                     <td></td>
                     <td>
-                        <small>Риски (10% от общего времени)</small>
+                        <small>Риски ({{risks}}% от общего времени)</small>
                     </td>
                     <td>
                         <small>{{riskTime(pages)}}</small>
@@ -172,7 +172,7 @@
             </table>
             <p class="pull-right"><strong>Итоговое время без рисков: {{pagesTotalTime(pages)}}</strong></p><br><br>
 
-            <p class="pull-right"><strong>Итоговое время с рисками (10%): {{commonTotalTime()}}</strong></p><br><br>
+            <p class="pull-right"><strong>Итоговое время с рисками ({{risks}}%): {{commonTotalTime()}}</strong></p><br><br>
             <br>
         </div>
     </div>
@@ -197,7 +197,7 @@
         <div class="container" ng-show="pages.length > 0">
             <p>
                 <span>Итоговое время без рисков: {{pagesTotalTime(pages)}}</span> <br/>
-                <span>Итоговое время с рисками (10%): {{commonTotalTime()}}</span>
+                <span>Итоговое время с рисками ({{risks}}%): {{commonTotalTime()}}</span>
             </p>
         </div>
     </div>

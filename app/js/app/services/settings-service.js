@@ -5,7 +5,8 @@
         .service('settingsService', ['$q', function ($q) {
 
             this.settings = {
-                theme: "light"
+                theme: "light",
+                risks: 10
             };
 
             this.getSettings = function () {
@@ -22,7 +23,16 @@
                 this.settings.theme = theme;
                 localStorage.setItem('settings', JSON.stringify(this.settings));
                 location.reload();
-            }
+            };
+
+            this.getRisks = function () {
+                return this.getSettings().risks;
+            };
+
+            this.setRisks = function (value) {
+                this.settings.risks = value;
+                localStorage.setItem('settings', JSON.stringify(this.settings));
+            };
 
         }]);
 

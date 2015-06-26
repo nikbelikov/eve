@@ -8,19 +8,15 @@
                 settingsService.setTheme(theme);
             };
 
+            $scope.risks = settingsService.getRisks();
+
+            $scope.setRisks = function (value) {
+                settingsService.setRisks(value);
+            };
+
             $scope.removeAllData = function () {
-
-                // настройки
-                localStorage.removeItem('settings');
-
-                // проекты
-                projectsService.getProjects().then(function (projects) {
-                    projects.map(function (project) {
-                        localStorage.removeItem(project.id)
-                    });
-                });
-                localStorage.removeItem('project-list');
-
+                localStorage.clear();
+                window.location = '#/projects';
                 location.reload();
             }
         }]);

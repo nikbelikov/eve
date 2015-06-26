@@ -6,7 +6,7 @@
             return {
                 restrict: 'E',
                 templateUrl: globalPath + '/views/drv-task-page.html',
-                controller: function ($scope, pageService, $modal, $http, $timeout, $routeParams) {
+                controller: function ($scope, pageService, settingsService, $modal, $http, $timeout, $routeParams) {
 
                     $scope.layout = 'table';
 
@@ -21,6 +21,8 @@
                     });
 
                     $scope.pageTitle = pageTitle;
+
+                    $scope.risks = settingsService.getRisks();
 
                     // отслеживаем изменение результата выполнения функции getLayoutView()
                     // когда изменилось, присваиваем для $scope.layout новое значение
@@ -52,7 +54,7 @@
 
                     // риски (% от общего количества времени)
                     $scope.riskTime = function () {
-                        $scope.risksTime = Math.round($scope.totalTime * 0.1);
+                        $scope.risksTime = Math.round($scope.totalTime * $scope.risks / 100);
                         return pageService.getTotalString($scope.risksTime);
                     };
 

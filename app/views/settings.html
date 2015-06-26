@@ -1,12 +1,17 @@
 <section>
     <div class="container">
-        <h1 class="text-center">Настройки</h1>
+        <h1 class="text-center"></span>Настройки</h1>
 
         <p><strong>Тема:</strong></p>
         <p>
             <button type="button" class="btn btn-default" ng-click="setTheme('light')">Светлая</button>
             <button type="button" class="btn btn-default" ng-click="setTheme('dark')">Темная</button>
         </p>
+
+        <hr/>
+
+        <p><strong>Проекты:</strong></p>
+        <p>Риски <input type="number" min="10" max="30" ng-value="risks" ng-model="risks" ng-change="setRisks(risks)"> %</p>
 
         <hr/>
 
