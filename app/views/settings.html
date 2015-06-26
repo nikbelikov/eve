@@ -2,11 +2,17 @@
     <div class="container">
         <h1 class="text-center">Настройки</h1>
 
-        <p>Тема:</p>
+        <p><strong>Тема:</strong></p>
         <p>
             <button type="button" class="btn btn-default" ng-click="setTheme('light')">Светлая</button>
             <button type="button" class="btn btn-default" ng-click="setTheme('dark')">Темная</button>
         </p>
+
+        <hr/>
+
+        <p><strong>Удаление данных:</strong></p>
+        <p>ВНИМАНИЕ! Все проекты и настройки будут удалены без возможности восстановления!</p>
+        <p><button type="button" class="btn btn-danger" ng-click="removeAllData()">Удалить все данные</button></p>
     </div>
 
     <br/><br/>
