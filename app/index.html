@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="eve" ng-controller="GlobalCtrl">
 
 <head>
     <title>Eve (α)</title>
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" ng-href="css/bootstrap-themes/{{settings.theme}}.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.3.14/angular-route.min.js"></script>
@@ -26,27 +26,30 @@
     <!-- app:js -->
     <script src="/app/js/app/app.js"></script>
     <script src="/app/js/app/routes.js"></script>
+    <script src="/app/js/app/controllers/global-controller.js"></script>
     <script src="/app/js/app/controllers/main-controller.js"></script>
     <script src="/app/js/app/controllers/modal-page-controller.js"></script>
     <script src="/app/js/app/controllers/modal-projects-controller.js"></script>
     <script src="/app/js/app/controllers/modal-task-controller.js"></script>
     <script src="/app/js/app/controllers/projects-controller.js"></script>
+    <script src="/app/js/app/controllers/settings-controller.js"></script>
     <script src="/app/js/app/directives/drv-layout-view.js"></script>
     <script src="/app/js/app/directives/drv-task-page.js"></script>
     <script src="/app/js/app/services/modal-service.js"></script>
     <script src="/app/js/app/services/page-service.js"></script>
     <script src="/app/js/app/services/projects-service.js"></script>
+    <script src="/app/js/app/services/settings-service.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
 </head>
 
-<body ng-app="eve">
+<body>
 
 <div ng-controller="MainCtrl">
 
     <header>
-        <nav class="navbar navbar-inverse" role="navigation">
+        <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <span class="navbar-brand">Eve (α)</span>
@@ -55,6 +58,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#/projects">Проекты</a></li>
+                        <li><a href="#/settings">Настройки</a></li>
                     </ul>
                 </div>
 

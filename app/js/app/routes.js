@@ -13,6 +13,10 @@ angular.module('eve')
                 templateUrl: globalPath + '/views/project.html',
                 controller: 'MainCtrl'
             })
+            .when('/settings', {
+                templateUrl: globalPath + '/views/settings.html',
+                controller: 'SettingsCtrl'
+            })
             .otherwise({redirectTo: '/projects'});
 
     }]);

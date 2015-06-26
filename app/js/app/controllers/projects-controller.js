@@ -17,7 +17,7 @@
                         }
                     }
                 });
-            }
+            };
 
             $scope.editProject = function (project) {
                 $modal.open({
@@ -31,7 +31,7 @@
                         }
                     }
                 })
-            }
+            };
 
             $scope.removeProject = function (projects, id, index) {
                 projects.splice(index, 1);
