@@ -1,8 +1,13 @@
-"use strict";
+(function () {
+    "use strict";
 
-angular.module('eve')
-    .config(['$routeProvider', function ($routeProvider) {
+    angular
+        .module('eve')
+        .config(config);
 
+    config.$inject = ['$routeProvider'];
+
+    function config ($routeProvider) {
         $routeProvider
             .when('/', {redirectTo: '/projects'})
             .when('/projects', {
@@ -18,5 +23,5 @@ angular.module('eve')
                 controller: 'SettingsCtrl'
             })
             .otherwise({redirectTo: '/projects'});
-
-    }]);
+    }
+})();

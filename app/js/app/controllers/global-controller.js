@@ -1,10 +1,13 @@
-"use strict";
-
 (function () {
-    angular.module('eve')
-        .controller('GlobalCtrl', ['$scope', 'settingsService', function ($scope, settingsService) {
+    "use strict";
 
-            $scope.settings = settingsService.getSettings();
+    angular
+        .module('eve')
+        .controller('GlobalCtrl', GlobalCtrl);
 
-        }]);
+    GlobalCtrl.$inject = ['$scope', 'settingsService'];
+
+    function GlobalCtrl ($scope, settingsService) {
+        $scope.settings = settingsService.getSettings();
+    }
 })();

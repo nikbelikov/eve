@@ -1,23 +1,28 @@
-"use strict";
-
 (function () {
-    angular.module('eve')
-        .controller('SettingsCtrl', ['$scope', 'settingsService', 'projectsService', function ($scope, settingsService, projectsService) {
+    "use strict";
 
-            $scope.setTheme = function (theme) {
-                settingsService.setTheme(theme);
-            };
+    angular
+        .module('eve')
+        .controller('SettingsCtrl', SettingsCtrl);
 
-            $scope.risks = settingsService.getRisks();
+    SettingsCtrl.$inject = ['$scope', 'settingsService'];
 
-            $scope.setRisks = function (value) {
-                settingsService.setRisks(value);
-            };
+    function SettingsCtrl ($scope, settingsService) {
 
-            $scope.removeAllData = function () {
-                localStorage.clear();
-                window.location = '#/projects';
-                location.reload();
-            }
-        }]);
+        $scope.setTheme = function (theme) {
+            settingsService.setTheme(theme);
+        };
+
+        $scope.risks = settingsService.getRisks();
+
+        $scope.setRisks = function (value) {
+            settingsService.setRisks(value);
+        };
+
+        $scope.removeAllData = function () {
+            localStorage.clear();
+            window.location = '#/projects';
+            location.reload();
+        }
+    }
 })();

@@ -1,39 +1,42 @@
-"use strict";
-
 (function () {
-    angular.module('eve')
-        .service('settingsService', ['$q', function ($q) {
+    "use strict";
 
-            this.settings = {
-                theme: "light",
-                risks: 10
-            };
+    angular
+        .module('eve')
+        .service('settingsService', settingsService);
 
-            this.getSettings = function () {
-                var settings = JSON.parse(localStorage.getItem('settings'));
+    function settingsService () {
 
-                if (!settings) {
-                    return this.settings;
-                } else {
-                    return settings;
-                }
-            };
+        this.settings = {
+            theme: "light",
+            risks: 10
+        };
 
-            this.setTheme = function (theme) {
-                this.settings.theme = theme;
-                localStorage.setItem('settings', JSON.stringify(this.settings));
-                location.reload();
-            };
+        this.getSettings = function () {
+            var settings = JSON.parse(localStorage.getItem('settings'));
 
-            this.getRisks = function () {
-                return this.getSettings().risks;
-            };
+            if (!settings) {
+                return this.settings;
+            } else {
+                return settings;
+            }
+        };
 
-            this.setRisks = function (value) {
-                this.settings.risks = value;
-                localStorage.setItem('settings', JSON.stringify(this.settings));
-            };
+        this.setTheme = function (theme) {
+            this.settings.theme = theme;
+            localStorage.setItem('settings', JSON.stringify(this.settings));
+            location.reload();
+        };
 
-        }]);
+        this.getRisks = function () {
+            return this.getSettings().risks;
+        };
+
+        this.setRisks = function (value) {
+            this.settings.risks = value;
+            localStorage.setItem('settings', JSON.stringify(this.settings));
+        };
+
+    }
 
 })();

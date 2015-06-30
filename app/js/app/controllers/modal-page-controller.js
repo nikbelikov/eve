@@ -1,33 +1,38 @@
-"use strict";
-
 (function () {
-    angular.module('eve')
-        .controller('ModalPageCtrl', ['$scope', '$modalInstance', 'modalService', 'modalData', function ($scope, $modalInstance, modalService, modalData) {
+    "use strict";
 
+    angular
+        .module('eve')
+        .controller('ModalPageCtrl', ModalPageCtrl);
+
+    ModalPageCtrl.$inject = ['$scope', '$modalInstance', 'modalService', 'modalData'];
+
+    function ModalPageCtrl ($scope, $modalInstance, modalService, modalData) {
+
+        // если редактируем название страницы
+        if (modalData.page) {
+            $scope.pageName = modalData.page.pageName;
+        }
+
+        // заголовок окна в зависимости от того,
+        // редактируем ли мы название страницы или
+        // добавляем новую
+        $scope.modalTitle = modalData.page ? 'Редактировать название' : 'Добавить страницу';
+
+        $scope.ok = function () {
             // если редактируем название страницы
             if (modalData.page) {
-                $scope.pageName = modalData.page.pageName;
+                $modalInstance.close(modalService.editPageTitle(modalData.page, $scope.pageName));
+                // если добавляем новую страницу
+            } else {
+                $modalInstance.close(modalService.addNewPage(modalData, $scope.pageName));
             }
+        };
 
-            // заголовок окна в зависимости от того,
-            // редактируем ли мы название страницы или
-            // добавляем новую
-            $scope.modalTitle = modalData.page ? 'Редактировать название' : 'Добавить страницу';
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
 
-            $scope.ok = function () {
-                // если редактируем название страницы
-                if (modalData.page) {
-                    $modalInstance.close(modalService.editPageTitle(modalData.page, $scope.pageName));
-                    // если добавляем новую страницу
-                } else {
-                    $modalInstance.close(modalService.addNewPage(modalData, $scope.pageName));
-                }
-            };
-
-            $scope.cancel = function () {
-                $modalInstance.dismiss('cancel');
-            };
-
-        }]);
+    }
 
 })();

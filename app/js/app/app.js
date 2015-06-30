@@ -1,6 +1,9 @@
-"use strict";
+(function () {
+    "use strict";
 
-angular.module('eve', [
-    'ui.bootstrap',
-    'ngRoute'
-]);
+    angular
+        .module('eve', [
+            'ui.bootstrap',
+            'ngRoute'
+        ]);
+})();

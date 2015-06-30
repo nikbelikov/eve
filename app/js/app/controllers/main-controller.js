@@ -1,8 +1,11 @@
-"use strict";
-
 (function () {
-    angular.module('eve')
-        .controller('MainCtrl', ['$scope', function ($scope) {
+    "use strict";
 
-        }]);
+    angular
+        .module('eve')
+        .controller('MainCtrl', MainCtrl);
+
+    function MainCtrl () {
+
+    }
 })();
