@@ -2,20 +2,20 @@
     <div class="container">
         <h1 class="text-center">Проекты</h1>
 
-        <table class="table table-striped table-hover" ng-show="projects.length > 0">
+        <table class="table table-striped table-hover" ng-show="projectsCtrl.projects.length > 0">
             <tr>
                 <th width="5%">#</th>
                 <th>Название</th>
                 <th width="8%"></th>
             </tr>
-            <tr ng-repeat="project in projects track by $index">
+            <tr ng-repeat="project in projectsCtrl.projects track by $index">
                 <td>{{$index+1}}</td>
                 <td><a ng-href="#/projects/{{project.id}}">{{project.name}}</a></td>
                 <td>
-                    <button class="btn btn-default btn-xs" ng-click="removeProject(projects, project.id, $index)">
+                    <button class="btn btn-default btn-xs" ng-click="projectsCtrl.removeProject(projectsCtrl.projects, project.id, $index)">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
-                    <button class="btn btn-default btn-xs" ng-click="editProject(project)">
+                    <button class="btn btn-default btn-xs" ng-click="projectsCtrl.editProject(project)">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                 </td>
@@ -27,7 +27,7 @@
 
     <section>
         <div class="text-center">
-            <button type="button" class="btn btn-default btn-small" ng-click="addProject()">
+            <button type="button" class="btn btn-default btn-small" ng-click="projectsCtrl.addProject()">
                 <span class="glyphicon glyphicon-plus"></span> Добавить проект
             </button>
         </div>

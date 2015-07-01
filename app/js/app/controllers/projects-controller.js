@@ -5,30 +5,34 @@
         .module('eve')
         .controller('ProjectsCtrl', ProjectsCtrl);
 
-    ProjectsCtrl.$inject = ['$scope', '$modal', 'projectsService'];
+    ProjectsCtrl.$inject = ['$modal', 'projectsService'];
 
-    function ProjectsCtrl ($scope, $modal, projectsService) {
+    function ProjectsCtrl ($modal, projectsService) {
+
+        var vm = this;
 
         projectsService.getProjects().then(function (result) {
-            $scope.projects = result;
+            vm.projects = result;
         });
 
-        $scope.addProject = function () {
+        vm.addProject = function () {
             $modal.open({
                 templateUrl: globalPath + '/views/add-page.html',
                 controller: 'ModalProjectsCtrl',
+                controllerAs: 'modalPageCtrl',
                 resolve: {
                     modalData: function () {
-                        return $scope.projects;
+                        return vm.projects;
                     }
                 }
             });
         };
 
-        $scope.editProject = function (project) {
+        vm.editProject = function (project) {
             $modal.open({
                 templateUrl: globalPath + '/views/add-page.html',
                 controller: 'ModalProjectsCtrl',
+                controllerAs: 'modalPageCtrl',
                 resolve: {
                     modalData: function () {
                         return {
@@ -39,7 +43,7 @@
             })
         };
 
-        $scope.removeProject = function (projects, id, index) {
+        vm.removeProject = function (projects, id, index) {
             projects.splice(index, 1);
             localStorage.setItem('project-list', JSON.stringify(projects));
             localStorage.removeItem(id);

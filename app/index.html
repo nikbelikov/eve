@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="eve" ng-controller="GlobalCtrl">
+<html ng-app="eve" ng-controller="GlobalCtrl as globalCtrl">
 
 <head>
     <title>Eve (α)</title>
@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" ng-href="css/bootstrap-themes/{{settings.theme}}.css">
+    <link rel="stylesheet" ng-href="css/bootstrap-themes/{{globalCtrl.settings.theme}}.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.3.14/angular-route.min.js"></script>
@@ -26,11 +26,6 @@
     <!-- app:js -->
     <script src="/app/js/app/app.js"></script>
     <script src="/app/js/app/routes.js"></script>
-    <script src="/app/js/app/services/modal-service.js"></script>
-    <script src="/app/js/app/services/page-service.js"></script>
-    <script src="/app/js/app/services/projects-service.js"></script>
-    <script src="/app/js/app/services/settings-service.js"></script>
-    <script src="/app/js/app/directives/drv-task-page.js"></script>
     <script src="/app/js/app/controllers/global-controller.js"></script>
     <script src="/app/js/app/controllers/main-controller.js"></script>
     <script src="/app/js/app/controllers/modal-page-controller.js"></script>
@@ -38,6 +33,11 @@
     <script src="/app/js/app/controllers/modal-task-controller.js"></script>
     <script src="/app/js/app/controllers/projects-controller.js"></script>
     <script src="/app/js/app/controllers/settings-controller.js"></script>
+    <script src="/app/js/app/directives/drv-task-page.js"></script>
+    <script src="/app/js/app/services/modal-service.js"></script>
+    <script src="/app/js/app/services/page-service.js"></script>
+    <script src="/app/js/app/services/projects-service.js"></script>
+    <script src="/app/js/app/services/settings-service.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 

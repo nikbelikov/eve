@@ -5,9 +5,9 @@
         .module('eve')
         .controller('GlobalCtrl', GlobalCtrl);
 
-    GlobalCtrl.$inject = ['$scope', 'settingsService'];
+    GlobalCtrl.$inject = ['settingsService'];
 
-    function GlobalCtrl ($scope, settingsService) {
-        $scope.settings = settingsService.getSettings();
+    function GlobalCtrl (settingsService) {
+        this.settings = settingsService.getSettings();
     }
 })();

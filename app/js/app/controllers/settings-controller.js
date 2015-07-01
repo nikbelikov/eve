@@ -5,21 +5,23 @@
         .module('eve')
         .controller('SettingsCtrl', SettingsCtrl);
 
-    SettingsCtrl.$inject = ['$scope', 'settingsService'];
+    SettingsCtrl.$inject = ['settingsService'];
 
-    function SettingsCtrl ($scope, settingsService) {
+    function SettingsCtrl (settingsService) {
 
-        $scope.setTheme = function (theme) {
+        var vm = this;
+
+        vm.setTheme = function (theme) {
             settingsService.setTheme(theme);
         };
 
-        $scope.risks = settingsService.getRisks();
+        vm.risks = settingsService.getRisks();
 
-        $scope.setRisks = function (value) {
+        vm.setRisks = function (value) {
             settingsService.setRisks(value);
         };
 
-        $scope.removeAllData = function () {
+        vm.removeAllData = function () {
             localStorage.clear();
             window.location = '#/projects';
             location.reload();

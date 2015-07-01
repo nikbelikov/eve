@@ -4,20 +4,20 @@
 
         <p><strong>Тема:</strong></p>
         <p>
-            <button type="button" class="btn btn-default" ng-click="setTheme('light')">Светлая</button>
-            <button type="button" class="btn btn-default" ng-click="setTheme('dark')">Темная</button>
+            <button type="button" class="btn btn-default" ng-click="settingsCtrl.setTheme('light')">Светлая</button>
+            <button type="button" class="btn btn-default" ng-click="settingsCtrl.setTheme('dark')">Темная</button>
         </p>
 
         <hr/>
 
         <p><strong>Проекты:</strong></p>
-        <p>Риски <input type="number" min="10" max="30" ng-value="risks" ng-model="risks" ng-change="setRisks(risks)"> %</p>
+        <p>Риски <input type="number" min="10" max="30" ng-value="settingsCtrl.risks" ng-model="settingsCtrl.risks" ng-change="settingsCtrl.setRisks(settingsCtrl.risks)"> %</p>
 
         <hr/>
 
         <p><strong>Удаление данных:</strong></p>
         <p>ВНИМАНИЕ! Все проекты и настройки будут удалены без возможности восстановления!</p>
-        <p><button type="button" class="btn btn-danger" ng-click="removeAllData()">Удалить все данные</button></p>
+        <p><button type="button" class="btn btn-danger" ng-click="settingsCtrl.removeAllData()">Удалить все данные</button></p>
     </div>
 
     <br/><br/>

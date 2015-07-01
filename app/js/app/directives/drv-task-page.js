@@ -9,12 +9,15 @@
         return {
             restrict: 'E',
             templateUrl: globalPath + '/views/drv-task-page.html',
-            controller: taskPageCtrl
+            controller: TaskPageCtrl,
+            controllerAs: 'taskPageCtrl'
         };
 
-        function taskPageCtrl ($scope, pageService, settingsService, $modal, $timeout, $routeParams) {
+        function TaskPageCtrl ($scope, pageService, settingsService, $modal, $timeout, $routeParams) {
 
-            $scope.layout = 'table';
+            var vm = this;
+
+            vm.layout = 'table';
 
             var projects = JSON.parse(localStorage.getItem('project-list'));
             var pageTitle = "";
@@ -26,29 +29,29 @@
                 }
             });
 
-            $scope.pageTitle = pageTitle;
+            vm.pageTitle = pageTitle;
 
-            $scope.risks = settingsService.getRisks();
+            vm.risks = settingsService.getRisks();
 
             // отслеживаем изменение результата выполнения функции getLayoutView()
-            // когда изменилось, присваиваем для $scope.layout новое значение
+            // когда изменилось, присваиваем для vm.layout новое значение
             $scope.$watch(function () {
                 return pageService.getLayoutView();
             }, function (newLayout) {
-                $scope.layout = newLayout;
+                vm.layout = newLayout;
             });
 
             pageService.getLastData($routeParams.id).then(function (result) {
-                $scope.pages = result.data;
+                vm.pages = result.data;
             });
 
-            $scope.pagesTotalTime = 0;
-            $scope.risksTime = 0;
+            vm.pagesTotalTime = 0;
+            vm.risksTime = 0;
 
-            $scope.savedDataLabelShow = false;
+            vm.savedDataLabelShow = false;
 
             // время отдельно для каждой страницы
-            $scope.pageTotalTime = function (page) {
+            vm.pageTotalTime = function (page) {
                 var total = 0;
 
                 angular.forEach(page.pageTasks, function (el) {
@@ -59,42 +62,44 @@
             };
 
             // риски (% от общего количества времени)
-            $scope.riskTime = function () {
-                $scope.risksTime = Math.round($scope.totalTime * $scope.risks / 100);
-                return pageService.getTotalString($scope.risksTime);
+            vm.riskTime = function () {
+                vm.risksTime = Math.round(vm.totalTime * vm.risks / 100);
+                return pageService.getTotalString(vm.risksTime);
             };
 
             // общее время на все страницы
-            $scope.pagesTotalTime = function (pages) {
-                $scope.totalTime = pageService.getPagesTotalTime(pages);
-                return pageService.getTotalString($scope.totalTime);
+            vm.pagesTotalTime = function (pages) {
+                vm.totalTime = pageService.getPagesTotalTime(pages);
+                return pageService.getTotalString(vm.totalTime);
             };
 
             // общее время с рисками
-            $scope.commonTotalTime = function () {
-                return pageService.getTotalString($scope.totalTime + $scope.risksTime);
+            vm.commonTotalTime = function () {
+                return pageService.getTotalString(vm.totalTime + vm.risksTime);
             };
 
-            $scope.addPage = function () {
+            vm.addPage = function () {
                 $modal.open({
                     templateUrl: globalPath + '/views/add-page.html',
                     controller: 'ModalPageCtrl',
+                    controllerAs: 'modalPageCtrl',
                     resolve: {
                         modalData: function () {
-                            return $scope.pages;
+                            return vm.pages;
                         }
                     }
                 });
             };
 
-            $scope.removePage = function (pages, index) {
+            vm.removePage = function (pages, index) {
                 pages.splice(index, 1);
             };
 
-            $scope.editPageTitle = function (page) {
+            vm.editPageTitle = function (page) {
                 $modal.open({
                     templateUrl: globalPath + '/views/add-page.html',
                     controller: 'ModalPageCtrl',
+                    controllerAs: 'modalPageCtrl',
                     resolve: {
                         modalData: function () {
                             return {
@@ -105,10 +110,11 @@
                 });
             };
 
-            $scope.addTask = function (page) {
+            vm.addTask = function (page) {
                 $modal.open({
                     templateUrl: globalPath + '/views/add-task.html',
                     controller: 'ModalTaskCtrl',
+                    controllerAs: 'modalTaskCtrl',
                     resolve: {
                         modalData: function () {
                             return {
@@ -119,14 +125,15 @@
                 });
             };
 
-            $scope.removeTask = function (page, index) {
+            vm.removeTask = function (page, index) {
                 page.pageTasks.splice(index, 1);
             };
 
-            $scope.editTask = function (task) {
+            vm.editTask = function (task) {
                 $modal.open({
                     templateUrl: globalPath + '/views/add-task.html',
                     controller: 'ModalTaskCtrl',
+                    controllerAs: 'modalTaskCtrl',
                     resolve: {
                         modalData: function () {
                             return {
@@ -137,23 +144,23 @@
                 });
             };
 
-            $scope.saveData = function () {
-                pageService.setLastData($routeParams.id, JSON.stringify($scope.pages));
+            vm.saveData = function () {
+                pageService.setLastData($routeParams.id, JSON.stringify(vm.pages));
 
-                $scope.savedDataLabelShow = true;
+                vm.savedDataLabelShow = true;
 
                 $timeout(function () {
-                    $scope.savedDataLabelShow = false;
+                    vm.savedDataLabelShow = false;
                 }, 2000);
             };
 
-            $scope.cancelEdits = function () {
+            vm.cancelEdits = function () {
                 pageService.getLastData($routeParams.id).then(function (result) {
-                    $scope.pages = result.data;
+                    vm.pages = result.data;
                 });
             };
 
-            $scope.elementMove = function (elements, index, direction) {
+            vm.elementMove = function (elements, index, direction) {
                 var oldElem = elements[index];
                 var newIndex;
 
@@ -167,9 +174,8 @@
                 elements.splice(newIndex, 0, oldElem);
             };
 
-            $scope.goToPage = function () {
-                var ind = this.$index;
-                var el = document.querySelectorAll('h3')[ind];
+            vm.goToPage = function (index) {
+                var el = document.querySelectorAll('h3')[index];
                 var bodyRect = document.body.getBoundingClientRect();
                 var elRect = el.getBoundingClientRect();
                 var elPosition = elRect.top - bodyRect.top;

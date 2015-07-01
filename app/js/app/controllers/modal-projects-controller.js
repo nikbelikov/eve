@@ -5,30 +5,32 @@
         .module('eve')
         .controller('ModalProjectsCtrl', ModalProjectsCtrl);
 
-    ModalProjectsCtrl.$inject = ['$scope', '$modalInstance', 'modalService', 'modalData'];
+    ModalProjectsCtrl.$inject = ['$modalInstance', 'modalService', 'modalData'];
 
-    function ModalProjectsCtrl ($scope, $modalInstance, modalService, modalData) {
+    function ModalProjectsCtrl ($modalInstance, modalService, modalData) {
 
-        $scope.modalTitle = 'Добавить проект';
+        var vm = this;
+
+        vm.modalTitle = 'Добавить проект';
 
         // если редактируем название проекта
         if (modalData.project) {
-            $scope.pageName = modalData.project.name;
-            $scope.modalTitle = 'Редактировать название';
+            vm.pageName = modalData.project.name;
+            vm.modalTitle = 'Редактировать название';
         }
 
-        $scope.ok = function () {
+        vm.ok = function () {
 
             // если редактируем название проекта
             if (modalData.project) {
-                $modalInstance.close(modalService.editProjectTitle(modalData.project, $scope.pageName));
+                $modalInstance.close(modalService.editProjectTitle(modalData.project, vm.pageName));
                 // если добавляем новый проект
             } else {
-                $modalInstance.close(modalService.addNewProject(modalData, $scope.pageName));
+                $modalInstance.close(modalService.addNewProject(modalData, vm.pageName));
             }
         };
 
-        $scope.cancel = function () {
+        vm.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
 

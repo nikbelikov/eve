@@ -5,31 +5,33 @@
         .module('eve')
         .controller('ModalPageCtrl', ModalPageCtrl);
 
-    ModalPageCtrl.$inject = ['$scope', '$modalInstance', 'modalService', 'modalData'];
+    ModalPageCtrl.$inject = ['$modalInstance', 'modalService', 'modalData'];
 
-    function ModalPageCtrl ($scope, $modalInstance, modalService, modalData) {
+    function ModalPageCtrl ($modalInstance, modalService, modalData) {
+
+        var vm = this;
 
         // если редактируем название страницы
         if (modalData.page) {
-            $scope.pageName = modalData.page.pageName;
+            vm.pageName = modalData.page.pageName;
         }
 
         // заголовок окна в зависимости от того,
         // редактируем ли мы название страницы или
         // добавляем новую
-        $scope.modalTitle = modalData.page ? 'Редактировать название' : 'Добавить страницу';
+        vm.modalTitle = modalData.page ? 'Редактировать название' : 'Добавить страницу';
 
-        $scope.ok = function () {
+        vm.ok = function () {
             // если редактируем название страницы
             if (modalData.page) {
-                $modalInstance.close(modalService.editPageTitle(modalData.page, $scope.pageName));
+                $modalInstance.close(modalService.editPageTitle(modalData.page, vm.pageName));
                 // если добавляем новую страницу
             } else {
-                $modalInstance.close(modalService.addNewPage(modalData, $scope.pageName));
+                $modalInstance.close(modalService.addNewPage(modalData, vm.pageName));
             }
         };
 
-        $scope.cancel = function () {
+        vm.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
 

@@ -12,15 +12,18 @@
             .when('/', {redirectTo: '/projects'})
             .when('/projects', {
                 templateUrl: globalPath + '/views/projects-list.html',
-                controller: 'ProjectsCtrl'
+                controller: 'ProjectsCtrl',
+                controllerAs: 'projectsCtrl'
             })
             .when('/projects/:id', {
                 templateUrl: globalPath + '/views/project.html',
-                controller: 'MainCtrl'
+                controller: 'MainCtrl',
+                controllerAs: 'mainCtrl'
             })
             .when('/settings', {
                 templateUrl: globalPath + '/views/settings.html',
-                controller: 'SettingsCtrl'
+                controller: 'SettingsCtrl',
+                controllerAs: 'settingsCtrl'
             })
             .otherwise({redirectTo: '/projects'});
     }
