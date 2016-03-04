@@ -112,11 +112,11 @@ export default class Page extends Component {
     }
 
     handlePageToTop() {
-        this.props.onPagePotisition(this.props.id, 'top');
+        this.props.onPagePosition(this.props.id, 'top');
     }
 
     handlePageToBottom() {
-        this.props.onPagePotisition(this.props.id, 'bottom');
+        this.props.onPagePosition(this.props.id, 'bottom');
     }
 
     handleTaskPosition(id, pageId, direction) {

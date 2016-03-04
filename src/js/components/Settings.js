@@ -16,7 +16,7 @@ export default class Settings extends Component {
                     <hr/>
 
                     <p><strong>Проекты:</strong></p>
-                    <p>Риски <input type="number" min="10" max="30" value="10" /> %</p>
+                    <p>Риски: 10 %</p>
                     <div className="checkbox">
                         <label>
                             <input type="checkbox" checked />

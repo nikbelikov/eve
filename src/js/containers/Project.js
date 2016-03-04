@@ -13,101 +13,25 @@ export default class Project extends Component {
         super();
 
         this.state = {
-            projectName: 'Sample project',
-            projectPages: [
-                {
-                    pageName: 'sample page',
-                    tasks: [
-                        {
-                            taskName: 'sample task',
-                            taskDesc: 'sample description',
-                            taskTime: 3
-                        },
-                        {
-                            taskName: 'sample task another',
-                            taskDesc: 'another sample description',
-                            taskTime: 5
-                        }
-                    ]
-                },
-                {
-                    pageName: 'another sample page',
-                    tasks: [
-                        {
-                            taskName: 'sample task',
-                            taskDesc: 'sample description',
-                            taskTime: 2
-                        },
-                        {
-                            taskName: 'sample task another',
-                            taskDesc: 'another sample description',
-                            taskTime: 3
-                        },
-                        {
-                            taskName: 'sample task another',
-                            taskDesc: 'another sample description',
-                            taskTime: 1
-                        },
-                        {
-                            taskName: 'sample task another',
-                            taskDesc: 'another sample description',
-                            taskTime: 1
-                        }
-                    ]
-                },
-                {
-                    pageName: 'another same thing',
-                    tasks: [
-                        {
-                            taskName: 'sample task',
-                            taskDesc: 'sample description',
-                            taskTime: 6
-                        },
-                        {
-                            taskName: 'sample task another',
-                            taskDesc: 'another sample description',
-                            taskTime: 2
-                        }
-                    ]
-                }
-            ],
             showAddPageModal: false,
             pageModalName: 'Добавить страницу',
             pageModalTitle: '',
-            editPageId: null,
-            viewStyle: 'edit'
+            editPageId: null
         };
     }
 
     handleTimeChange(value, pageId, taskId) {
-        this.setState(project =>
-            project.projectPages[pageId].tasks[taskId].taskTime = parseInt(value)
-        );
+        this.props.onSetTaskTime(pageId, taskId, value);
     }
 
     handleAddTask(title, description, pageId) {
         if (title.trim()) {
-            this.setState(project => {
-                    let tasks = project.projectPages[pageId].tasks;
-
-                    tasks[tasks.length] = {
-                        taskName: title,
-                        taskDesc: description,
-                        taskTime: 1
-                    }
-                }
-            );
-
+            this.props.onAddTask(pageId, title, description);
         }
     }
 
     handleDeleteTask(pageId, id) {
-        this.setState(project => {
-                this.setState(project => {
-                    project.projectPages[pageId].tasks.splice(id, 1);
-                });
-            }
-        );
+        this.props.onRemoveTask(pageId, id);
     }
 
     openAddPageDialog() {
@@ -129,14 +53,7 @@ export default class Project extends Component {
         let title = this.refs.title.getValue().trim();
 
         if (title) {
-            this.setState(project => {
-                let projects = project.projectPages;
-
-                projects[projects.length] = {
-                    pageName: title,
-                    tasks: []
-                }
-            });
+            this.props.onAddPage(title);
         }
 
         this.setState({
@@ -148,13 +65,7 @@ export default class Project extends Component {
         let title = this.refs.title.getValue().trim();
 
         if (title) {
-            let pages = this.state.projectPages;
-
-            pages[this.state.editPageId].pageName = title;
-
-            this.setState({
-                projectPages: pages
-            });
+            this.props.onEditPage(this.state.editPageId, title);
         }
 
         this.setState({
@@ -164,7 +75,7 @@ export default class Project extends Component {
     }
 
     handleEditPageName(id) {
-        let modalTitle = this.state.projectPages[id].pageName;
+        let modalTitle = this.props.projectPages[id].pageName;
 
         this.setState({
             editPageId: id,
@@ -175,68 +86,37 @@ export default class Project extends Component {
     }
 
     handleDeletePage(id) {
-        this.setState(project => {
-            project.projectPages.splice(id, 1);
-        });
+        this.props.onRemovePage(id);
     }
 
     handlePagePosition(index, direction) {
-        let newIndex;
-
         if (direction === 'top') {
-            newIndex = index - 1;
+            this.props.onMovePage(index, -1);
         } else if (direction === 'bottom') {
-            newIndex = index + 1;
+            this.props.onMovePage(index, 1);
         }
-
-        let pages = this.state.projectPages;
-        let oldElem = pages[index];
-
-        pages.splice(index, 1);
-        pages.splice(newIndex, 0, oldElem);
-
-        this.setState({
-            projectPages: pages
-        });
     }
 
     handleTaskPosition(index, pageId, direction) {
-        let newIndex;
-
         if (direction === 'top') {
-            newIndex = index - 1;
+            this.props.onMoveTask(pageId, index, -1);
         } else if (direction === 'bottom') {
-            newIndex = index + 1;
+            this.props.onMoveTask(pageId, index, 1);
         }
-
-        let pages = this.state.projectPages;
-        let tasks = pages[pageId].tasks;
-        let oldElem = tasks[index];
-
-        tasks.splice(index, 1);
-        tasks.splice(newIndex, 0, oldElem);
-
-        this.setState({
-            projectPages: pages
-        });
     }
 
     handleSetEditView() {
-        this.setState({
-            viewStyle: 'edit'
-        })
+        this.props.onSetView('EDIT');
     }
 
     handleSetTextView() {
-        this.setState({
-            viewStyle: 'text'
-        })
+        this.props.onSetView('TEXT');
     }
 
     getPageTime(index) {
         let sum = 0;
 
-        this.state.projectPages[index].tasks.map((task) => {
+        this.props.projectPages[index].tasks.map((task) => {
             sum += task.taskTime;
         });
 
@@ -246,7 +126,7 @@ export default class Project extends Component {
     getSum() {
         let sum = 0;
 
-        this.state.projectPages.map(page => {
+        this.props.projectPages.map(page => {
             page.tasks.map(task => {
                 sum += task.taskTime;
             })
@@ -271,34 +151,27 @@ export default class Project extends Component {
     }
 
     getModalEditTaskTitle(pageId, id) {
-        return this.state.projectPages[pageId].tasks[id].taskName;
+        return this.props.projectPages[pageId].tasks[id].taskName;
     }
 
     getModalEditTaskDescription(pageId, id) {
-        return this.state.projectPages[pageId].tasks[id].taskDesc;
+        return this.props.projectPages[pageId].tasks[id].taskDesc;
     }
 
     handleSaveTask(title, description, taskId, pageId) {
         if (title) {
-            let pages = this.state.projectPages;
-
-            pages[pageId].tasks[taskId].taskName = title;
-            pages[pageId].tasks[taskId].taskDesc = description;
-
-            this.setState({
-                projectPages: pages
-            });
+            this.props.onEditTask(pageId, taskId, title, description);
         }
     }
 
     render() {
-        let viewStyle = this.state.viewStyle;
+        let viewStyle = this.props.viewStyle;
 
-        if (viewStyle === 'edit') {
+        if (viewStyle === 'EDIT') {
             return(
                 <section>
                     <div className="layout-table">
-                        <h1 className="text-center">{this.state.projectName}</h1>
+                        <h1 className="text-center">{this.props.projectName}</h1>
 
                         <div className="container text-right">
                             <ButtonGroup>
@@ -307,12 +180,12 @@ export default class Project extends Component {
                             </ButtonGroup>
                         </div>
 
-                        {this.state.projectPages.map((page, index) =>
+                        {this.props.projectPages.map((page, index) =>
                             <Page
                                 id={index}
                                 key={index}
                                 pageName={page.pageName}
-                                pagesLength={this.state.projectPages.length}
+                                pagesLength={this.props.projectPages.length}
                                 tasks={page.tasks}
                                 onTimeChange={this.handleTimeChange.bind(this)}
                                 onAddTask={this.handleAddTask.bind(this)}
@@ -334,7 +207,7 @@ export default class Project extends Component {
 
                         <hr/>
 
-                        <Result pages={this.state.projectPages} />
+                        <Result pages={this.props.projectPages} />
 
                         <p className="text-center">
                             <Button bsStyle="link">Отмена</Button>
@@ -358,10 +231,10 @@ export default class Project extends Component {
                     </Modal>
                 </section>
             );
-        } else if (viewStyle === 'text') {
+        } else if (viewStyle === 'TEXT') {
             return(
                 <section>
-                    <h1 className="text-center">{this.state.projectName}</h1>
+                    <h1 className="text-center">{this.props.projectName}</h1>
 
                     <div className="container text-right">
                         <ButtonGroup>
@@ -372,12 +245,12 @@ export default class Project extends Component {
 
                     <div className="container">
                         <p>
-                            <strong>{this.state.projectName}</strong>
+                            <strong>{this.props.projectName}</strong>
                         </p>
                         <p>----------------------------------------</p>
                     </div>
 
-                    {this.state.projectPages.map((page, index) => {
+                    {this.props.projectPages.map((page, index) => {
                         return(
                             <div className="container" key={index}>
                                 <p>
