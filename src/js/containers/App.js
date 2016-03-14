@@ -46,9 +46,9 @@ class App extends Component {
     }
 }
 
-function select (state) {
+function select(state) {
     return {
-         project: state
+        project: state
     }
 }
 
