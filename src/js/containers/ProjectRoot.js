@@ -16,7 +16,7 @@ import Project from '../containers/Project'
 import Settings from '../components/Settings'
 import Header from '../components/Header'
 
-class App extends Component {
+class ProjectRoot extends Component {
     render() {
         const { dispatch, project } = this.props;
 
@@ -51,4 +51,4 @@ function select(state) {
     }
 }
 
-export default connect(select)(App)
+export default connect(select)(ProjectRoot)

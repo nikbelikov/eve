@@ -202,6 +202,7 @@ export default class Page extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Input
+                            autoFocus
                             type="text"
                             ref="title"
                             placeholder="Название"

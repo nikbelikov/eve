@@ -20,7 +20,7 @@ export default class Settings extends Component {
                     <p><strong>Удаление данных:</strong></p>
                     <p>ВНИМАНИЕ! Все проекты и настройки будут удалены без возможности восстановления!</p>
                     <p>
-                        <Button bsStyle="danger"><Glyphicon glyph="exclamation-sign" /> Удалить все данные</Button>
+                        <Button bsStyle="danger">Удалить все данные</Button>
                     </p>
                 </div>
 

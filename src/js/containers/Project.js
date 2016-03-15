@@ -213,10 +213,10 @@ export default class Project extends Component {
 
                     <Modal show={this.state.showAddPageModal} onHide={this.closeAddPageDialog.bind(this)} onExited={this.resetAddPageDialog.bind(this)}>
                         <Modal.Header>
-                            <Modal.Title ref="modalname">{this.state.pageModalName}</Modal.Title>
+                            <Modal.Title>{this.state.pageModalName}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <Input type="text" ref="title" placeholder="Название" value={this.state.pageModalTitle} onChange={this.changePageModalTitle.bind(this)}/>
+                            <Input autoFocus type="text" ref="title" placeholder="Название" value={this.state.pageModalTitle} onChange={this.changePageModalTitle.bind(this)}/>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button bsStyle="link" onClick={this.closeAddPageDialog.bind(this)}>Отмена</Button>
@@ -255,7 +255,7 @@ export default class Project extends Component {
                                             <span key={index}>{task.taskName} {getTotalTime(task.taskTime)} <br/></span>
                                         )
                                     })}
-                                    <span>Суммарное время: {this.getPageTime(index)} </span>
+                                    <span>Итого: {this.getPageTime(index)} </span>
                                 </p>
                                 <p>----------------------------------------</p>
                             </div>
