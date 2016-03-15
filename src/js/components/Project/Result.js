@@ -49,7 +49,7 @@ export default class Result extends Component {
     render() {
         return(
             <div className="container">
-                <h3 className="text-center"><span className="glyphicon glyphicon-time"></span> Итоговое время</h3>
+                <h3 className="text-center">Итоговое время</h3>
                 <table className="table table-striped">
                     <tbody>
                     <tr>

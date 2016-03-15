@@ -18,7 +18,7 @@ import {
 } from './actions'
 
 const initialState = {
-    projectName: 'Sample project',
+    projectName: 'Project',
     projectPages: [],
     viewStyle: View.EDIT
 };
@@ -71,20 +71,13 @@ function task(state, action) {
             ];
         case SET_TASK_TIME:
             return [
-                ...state.slice(0, action.pageId),
+                ...state.slice(0, action.taskId),
                 {
-                    pageName: state[action.pageId].pageName,
-                    tasks: [
-                        ...state[action.pageId].tasks.slice(0, action.taskId),
-                        {
-                            taskName: state[action.pageId].tasks[action.taskId].taskName,
-                            taskDesc: state[action.pageId].tasks[action.taskId].taskDesc,
-                            taskTime: parseInt(action.value)
-                        },
-                        ...state[action.pageId].tasks.slice(action.taskId + 1)
-                    ]
+                    taskName: state[action.taskId].taskName,
+                    taskDesc: state[action.taskId].taskDesc,
+                    taskTime: parseInt(action.value)
                 },
-                ...state.slice(action.pageId + 1)
+                ...state.slice(action.taskId + 1)
             ];
         default:
             return state
@@ -187,15 +180,7 @@ function pages(state, action) {
                 ...state.slice(0, action.pageId),
                 {
                     pageName: state[action.pageId].pageName,
-                    tasks: [
-                        ...state[action.pageId].tasks.slice(0, action.taskId),
-                        {
-                            taskName: state[action.pageId].tasks[action.taskId].taskName,
-                            taskDesc: state[action.pageId].tasks[action.taskId].taskDesc,
-                            taskTime: parseInt(action.value)
-                        },
-                        ...state[action.pageId].tasks.slice(action.taskId + 1)
-                    ]
+                    tasks: task(state[action.pageId].tasks, action)
                 },
                 ...state.slice(action.pageId + 1)
             ];

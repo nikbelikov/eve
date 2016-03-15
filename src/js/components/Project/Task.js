@@ -47,8 +47,8 @@ export default class Task extends Component {
         return(
             <tr>
                 <td>
-                    <Button bsSize="xsmall" onClick={this.deleteTask.bind(this)}><Glyphicon glyph="minus" /></Button>
-                    <Button bsSize="xsmall" onClick={this.editTask.bind(this)}><Glyphicon glyph="edit" /></Button>
+                    <Button bsSize="xsmall" onClick={this.deleteTask.bind(this)}><Glyphicon glyph="trash" /></Button>
+                    <Button bsSize="xsmall" onClick={this.editTask.bind(this)}><Glyphicon glyph="pencil" /></Button>
                 </td>
                 <td>{this.props.id + 1}</td>
                 <td>{this.props.taskName}</td>

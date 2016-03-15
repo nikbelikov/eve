@@ -10,7 +10,7 @@ import { getTotalTime } from '../../functions'
 class ButtonArrowTop extends Component {
     render() {
         return(
-            <Button bsSize="xsmall" onClick={this.props.onPageToTop.bind(this)}><Glyphicon glyph="triangle-top" /></Button>
+            <Button bsSize="xsmall" onClick={this.props.onPageToTop.bind(this)}><Glyphicon glyph="arrow-up" /></Button>
         )
     }
 }
@@ -18,7 +18,7 @@ class ButtonArrowTop extends Component {
 class ButtonArrowBottom extends Component {
     render() {
         return(
-            <Button bsSize="xsmall" onClick={this.props.onPageToBottom.bind(this)}><Glyphicon glyph="triangle-bottom" /></Button>
+            <Button bsSize="xsmall" onClick={this.props.onPageToBottom.bind(this)}><Glyphicon glyph="arrow-down" /></Button>
         )
     }
 }
@@ -153,9 +153,9 @@ export default class Page extends Component {
                 <h3 className="text-center">
                     {this.props.id === 0 ? null : <ButtonArrowTop onPageToTop={this.handlePageToTop.bind(this)} />}
                     {this.props.pagesLength === this.props.id + 1 ? null : <ButtonArrowBottom onPageToBottom={this.handlePageToBottom.bind(this)} />}
-                    {this.props.pageName}
-                    <Button bsSize="xsmall" onClick={this.deletePage.bind(this, this.props.id)}><Glyphicon glyph="minus" /></Button>
-                    <Button bsSize="xsmall" onClick={this.editPageName.bind(this, this.props.id)}><Glyphicon glyph="edit" /></Button>
+                    <span className="project-name">{this.props.pageName}</span>
+                    <Button bsSize="xsmall" onClick={this.editPageName.bind(this, this.props.id)}><Glyphicon glyph="pencil" /></Button>
+                    <Button bsSize="xsmall" onClick={this.deletePage.bind(this, this.props.id)}><Glyphicon glyph="trash" /></Button>
                 </h3>
                 <table className="table table-striped table-hover">
                     <tbody>

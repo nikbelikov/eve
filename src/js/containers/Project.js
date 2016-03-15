@@ -44,7 +44,12 @@ export default class Project extends Component {
 
     closeAddPageDialog() {
         this.setState({
-            showAddPageModal: false,
+            showAddPageModal: false
+        })
+    }
+
+    resetAddPageDialog() {
+        this.setState({
             editPageId: null
         })
     }
@@ -69,8 +74,7 @@ export default class Project extends Component {
         }
 
         this.setState({
-            showAddPageModal: false,
-            editPageId: null
+            showAddPageModal: false
         });
     }
 
@@ -170,52 +174,44 @@ export default class Project extends Component {
         if (viewStyle === 'EDIT') {
             return(
                 <section>
-                    <div className="layout-table">
+                    <div className="container text-right">
                         <h1 className="text-center">{this.props.projectName}</h1>
-
-                        <div className="container text-right">
-                            <ButtonGroup>
-                                <Button onClick={this.handleSetEditView.bind(this)}><Glyphicon glyph="list-alt" /></Button>
-                                <Button onClick={this.handleSetTextView.bind(this)}><Glyphicon glyph="align-left" /></Button>
-                            </ButtonGroup>
-                        </div>
-
-                        {this.props.projectPages.map((page, index) =>
-                            <Page
-                                id={index}
-                                key={index}
-                                pageName={page.pageName}
-                                pagesLength={this.props.projectPages.length}
-                                tasks={page.tasks}
-                                onTimeChange={this.handleTimeChange.bind(this)}
-                                onAddTask={this.handleAddTask.bind(this)}
-                                onDeleteTask={this.handleDeleteTask.bind(this)}
-                                onSaveTask={this.handleSaveTask.bind(this)}
-                                onDeletePage={this.handleDeletePage.bind(this)}
-                                onEditPageName={this.handleEditPageName.bind(this)}
-                                onPagePosition={this.handlePagePosition.bind(this)}
-                                onTaskPosition={this.handleTaskPosition.bind(this)}
-                                getModalEditTaskTitle={this.getModalEditTaskTitle.bind(this)}
-                                getModalEditTaskDescription={this.getModalEditTaskDescription.bind(this)} />
-                        )}
-
-                        <hr/>
-
-                        <div className="text-center">
-                            <Button onClick={this.openAddPageDialog.bind(this)}><Glyphicon glyph="plus" /> Добавить страницу</Button>
-                        </div>
-
-                        <hr/>
-
-                        <Result pages={this.props.projectPages} />
-
-                        <p className="text-center">
-                            <Button bsStyle="link">Отмена</Button>
-                            <Button bsStyle="success">Сохранить</Button>
-                        </p>
+                        <ButtonGroup>
+                            <Button onClick={this.handleSetEditView.bind(this)}><Glyphicon glyph="list-alt" /></Button>
+                            <Button onClick={this.handleSetTextView.bind(this)}><Glyphicon glyph="align-left" /></Button>
+                        </ButtonGroup>
                     </div>
 
-                    <Modal show={this.state.showAddPageModal} onHide={this.closeAddPageDialog.bind(this)}>
+                    {this.props.projectPages.map((page, index) =>
+                        <Page
+                            id={index}
+                            key={index}
+                            pageName={page.pageName}
+                            pagesLength={this.props.projectPages.length}
+                            tasks={page.tasks}
+                            onTimeChange={this.handleTimeChange.bind(this)}
+                            onAddTask={this.handleAddTask.bind(this)}
+                            onDeleteTask={this.handleDeleteTask.bind(this)}
+                            onSaveTask={this.handleSaveTask.bind(this)}
+                            onDeletePage={this.handleDeletePage.bind(this)}
+                            onEditPageName={this.handleEditPageName.bind(this)}
+                            onPagePosition={this.handlePagePosition.bind(this)}
+                            onTaskPosition={this.handleTaskPosition.bind(this)}
+                            getModalEditTaskTitle={this.getModalEditTaskTitle.bind(this)}
+                            getModalEditTaskDescription={this.getModalEditTaskDescription.bind(this)} />
+                    )}
+
+                    <hr/>
+
+                    <div className="text-center">
+                        <Button onClick={this.openAddPageDialog.bind(this)}>Добавить страницу</Button>
+                    </div>
+
+                    <hr/>
+
+                    {this.props.projectPages.length > 0 ? <Result pages={this.props.projectPages} /> : ''}
+
+                    <Modal show={this.state.showAddPageModal} onHide={this.closeAddPageDialog.bind(this)} onExited={this.resetAddPageDialog.bind(this)}>
                         <Modal.Header>
                             <Modal.Title ref="modalname">{this.state.pageModalName}</Modal.Title>
                         </Modal.Header>
@@ -234,9 +230,8 @@ export default class Project extends Component {
         } else if (viewStyle === 'TEXT') {
             return(
                 <section>
-                    <h1 className="text-center">{this.props.projectName}</h1>
-
                     <div className="container text-right">
+                        <h1 className="text-center">{this.props.projectName}</h1>
                         <ButtonGroup>
                             <Button onClick={this.handleSetEditView.bind(this)}><Glyphicon glyph="list-alt" /></Button>
                             <Button onClick={this.handleSetTextView.bind(this)}><Glyphicon glyph="align-left" /></Button>

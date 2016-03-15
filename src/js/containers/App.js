@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Router, Route, hashHistory } from 'react-router'
 import { connect } from 'react-redux'
 import {
     addPage,
@@ -22,13 +21,13 @@ class App extends Component {
         const { dispatch, project } = this.props;
 
         return(
-            <div>
+            <section>
                 <Header />
 
                 <Project
-                    projectName={project.projectName}
-                    projectPages={project.projectPages}
-                    viewStyle={project.viewStyle}
+                    projectName={project.appData.projectName}
+                    projectPages={project.appData.projectPages}
+                    viewStyle={project.appData.viewStyle}
                     onAddPage={text => dispatch(addPage(text))}
                     onRemovePage={pageId => dispatch(removePage(pageId))}
                     onEditPage={(pageId, text) => dispatch(editPage(pageId, text))}
@@ -41,7 +40,7 @@ class App extends Component {
                     onSetView={view => dispatch(setView(view))} />
 
                 <p className="text-center">2016 &copy; Eve (α)</p>
-            </div>
+            </section>
         );
     }
 }
