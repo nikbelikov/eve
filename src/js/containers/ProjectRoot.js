@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getProjectName } from '../serverData'
 import {
     addPage,
     removePage,
@@ -25,7 +26,7 @@ class ProjectRoot extends Component {
                 <Header />
 
                 <Project
-                    projectName={project.appData.projectName}
+                    projectName={getProjectName(this.props.params.projectId)}
                     projectPages={project.appData.projectPages}
                     viewStyle={project.appData.viewStyle}
                     onAddPage={text => dispatch(addPage(text))}
@@ -38,8 +39,6 @@ class ProjectRoot extends Component {
                     onMoveTask={(pageId, taskId, direction) => dispatch(moveTask(pageId, taskId, direction))}
                     onSetTaskTime={(pageId, taskId, value) => dispatch(setTaskTime(pageId, taskId, value))}
                     onSetView={view => dispatch(setView(view))} />
-
-                <p className="text-center">2016 &copy; Eve (α)</p>
             </section>
         );
     }

@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux'
+import { getPages } from './serverData'
+import { generateId, chars, addProject } from './serverData'
 
 import {
+    ADD_PROJECT,
+    SET_PROJECT_NAME,
+
+    GET_PAGES,
     ADD_PAGE,
     REMOVE_PAGE,
     EDIT_PAGE,
@@ -18,10 +24,28 @@ import {
 } from './actions'
 
 const initialState = {
-    projectName: 'Project',
+    projects: [],
     projectPages: [],
     viewStyle: View.EDIT
 };
+
+function project(state, action) {
+    switch (action.type) {
+        case ADD_PROJECT:
+            let projectId = generateId(chars, 20, false);
+
+            addProject(projectId, action.title);
+
+            return [...state, {
+                projectId,
+                name: action.title
+            }];
+        case SET_PROJECT_NAME:
+            return action.title;
+        default:
+            return state
+    }
+}
 
 function task(state, action) {
     switch (action.type) {
@@ -86,6 +110,8 @@ function task(state, action) {
 
 function pages(state, action) {
     switch (action.type) {
+        case GET_PAGES:
+            return getPages(action.projectId);
         case ADD_PAGE:
             return [...state, {
                 pageName: action.text,
@@ -200,7 +226,7 @@ function view(state, action) {
 
 function appData(state = initialState, action) {
     return {
-        projectName: state.projectName,
+        projects: project(state.projects, action),
         projectPages: pages(state.projectPages, action),
         viewStyle: view(state.viewStyle, action)
     }

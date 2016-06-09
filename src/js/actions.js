@@ -1,5 +1,9 @@
 // типы действий
 
+export const ADD_PROJECT = 'ADD_PROJECT';
+export const SET_PROJECT_NAME = 'SET_PROJECT_NAME';
+
+export const GET_PAGES = 'GET_PAGES';
 export const ADD_PAGE = 'ADD_PAGE';
 export const REMOVE_PAGE = 'REMOVE_PAGE';
 export const EDIT_PAGE = 'EDIT_PAGE';
@@ -23,6 +27,27 @@ export const View = {
 
 
 // генераторы действий
+
+export function getPages(projectId) {
+    return {
+        type: GET_PAGES,
+        projectId
+    }
+}
+
+export function addProject(title) {
+    return {
+        type: ADD_PROJECT,
+        title
+    }
+}
+
+export function setProjectName(title) {
+    return {
+        type: SET_PROJECT_NAME,
+        title
+    }
+}
 
 export function addPage(text) {
     return {

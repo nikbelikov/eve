@@ -176,10 +176,12 @@ export default class Project extends Component {
                 <section>
                     <div className="container text-right">
                         <h1 className="text-center">{this.props.projectName}</h1>
-                        <ButtonGroup>
-                            <Button onClick={this.handleSetEditView.bind(this)}><Glyphicon glyph="list-alt" /></Button>
-                            <Button onClick={this.handleSetTextView.bind(this)}><Glyphicon glyph="align-left" /></Button>
-                        </ButtonGroup>
+                        {this.props.projectPages.length > 0 ?
+                            <ButtonGroup>
+                                <Button onClick={this.handleSetEditView.bind(this)}><Glyphicon glyph="list-alt" /></Button>
+                                <Button onClick={this.handleSetTextView.bind(this)}><Glyphicon glyph="align-left" /></Button>
+                            </ButtonGroup>
+                            : ''}
                     </div>
 
                     {this.props.projectPages.map((page, index) =>
